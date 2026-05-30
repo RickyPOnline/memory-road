@@ -1,0 +1,23 @@
+[Unit]
+Description=Wave Memory Road · L1 FURROW Continuous Daemon · keeps episodes_v2 always caught up to L0
+After=network.target continuity-kernel.service
+Wants=continuity-kernel.service
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/.furrow_continuous
+ExecStart=/usr/bin/bash /root/wc/runtime/furrow_continuous_daemon.sh
+Restart=always
+RestartSec=30
+
+MemoryMax=512M
+CPUQuota=30%
+
+StandardOutput=append:/tmp/furrow_continuous.log
+StandardError=append:/tmp/furrow_continuous.err
+
+[Install]
+WantedBy=multi-user.target
