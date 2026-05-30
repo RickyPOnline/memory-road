@@ -161,7 +161,7 @@ memory-road/
 ├── SKILL.md               ← the comprehensive bible
 ├── STORY.md               ← the journey · read before docs
 ├── ARCHITECTURE.md        ← 11-layer map + data flow
-├── INSTALL.md             ← 5-step drop-in
+├── INSTALL.md             ← drop-in install steps
 ├── OPERATIONS.md          ← pause/resume/troubleshoot
 ├── FORCE_MEMORY_USE.md    ← the hard hook doctrine
 ├── ECOSYSTEM.md           ← related skills + broader stack

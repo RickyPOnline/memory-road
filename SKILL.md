@@ -47,7 +47,7 @@ A **persistent multi-layer memory system** for Claude Code that ·
 2. **Extracts structured meaning** at higher layers (episodes · summaries · clusters · doctrines · unfinished flags) via named worker agents
 3. **Auto-injects relevant memory** into every user prompt via a UserPromptSubmit hook so the agent CANNOT forget to use it
 4. **Survives `/compact`, model upgrades, 529 cascades, laptop reboots** · the substrate is LLM-free and always-on
-5. **Drop-in installable** · clone repo · run install.sh · agent has persistent recall on first prompt after install · comprehension layers fill in at the pace of your Anthropic Max bucket
+5. **Drop-in installable** · clone repo · run install scripts · agent has persistent recall on first prompt after install · comprehension layers fill in at the pace of the operator's Anthropic Max bucket
 
 This skill is the COMPLETE system · code + doctrines + ops + canonical install order. Anything Claude Code needs to give itself a permanent brain lives in this folder.
 

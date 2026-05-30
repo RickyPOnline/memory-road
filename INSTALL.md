@@ -62,7 +62,7 @@ ps -ef | grep chronicler_forward_sweeper | grep -v grep
 tail -f /var/log/memory_road/forward_sweeper.log
 ```
 
-After Step 3 · new episodes (anything Wave does TODAY) get summarized within 5 minutes. The now-edge of memory stays current automatically.
+After Step 3 · new episodes (anything the agent does TODAY) get summarized on the forward sweeper's next poll cycle. The now-edge of memory stays current automatically.
 
 ---
 
