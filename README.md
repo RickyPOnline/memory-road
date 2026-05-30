@@ -2,7 +2,7 @@
 
 # 🧠 Memory Road
 
-**Persistent memory for Claude Code · drop-in · 5-minute install.**
+**Persistent memory for Claude Code · drop-in install · the harness enforces memory.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-orange.svg)](https://claude.com/claude-code)
@@ -67,7 +67,7 @@ Every Claude Code session starts blank. Every `/compact` half-forgets. Every mod
 
 ---
 
-## Install (5 minutes)
+## Install
 
 ```bash
 git clone https://github.com/RickyPOnline/memory-road.git
@@ -89,7 +89,7 @@ bash setup/install_hooks.sh
 bash examples/smoke_test.sh
 ```
 
-5 minutes later, your agent has persistent memory. Survive `/compact`. Survive model upgrades. Survive crashes. Survive **the 16-day blind spot**.
+Once installed, your agent has persistent memory. Survive `/compact`. Survive model upgrades. Survive crashes. Survive **the 16-day blind spot**.
 
 ---
 

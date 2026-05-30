@@ -1,6 +1,6 @@
 # Memory Road · Drop-in Install
 
-5-minute install · canonical order. Each step builds on the previous.
+Drop-in install · canonical order · each step builds on the previous. Comprehension layers (chunking, summarization, clustering) fill in over time at the pace of your Anthropic Max bucket · the substrate captures events from second zero.
 
 ---
 
