@@ -2347,6 +2347,30 @@ def build_rollover_packet():
         except Exception:
             sections.append("Working state unavailable")
 
+    # L0 UNCHUNKED TAIL · the 5% recovery gap fix (2026-05-30)
+    # The most-recent raw events not yet in any L1 episode.
+    # Zero LLM cost · pure SQL · closes "last minute before crash" gap.
+    sections.append("\n## L0 UNCHUNKED TAIL (events not yet in an episode)")
+    try:
+        _tconn = sqlite3.connect(str(KERNEL_DB), timeout=2)
+        tail_rows = _tconn.execute("""
+            SELECT id, datetime(ts,'unixepoch'), type, substr(content, 1, 240)
+            FROM events
+            WHERE agent='CCODE'
+              AND id > COALESCE((SELECT MAX(event_end_id) FROM episodes_v2 WHERE agent='CCODE'), 0)
+            ORDER BY id DESC LIMIT 15
+        """).fetchall()
+        _tconn.close()
+        if tail_rows:
+            sections.append(f"  {len(tail_rows)} events captured since last L1 chunk · raw substrate ·")
+            for eid, ts, typ, content in reversed(tail_rows):
+                c = (content or "").replace("\n", " ")[:200]
+                sections.append(f"  · {ts} · {typ} · {c}")
+        else:
+            sections.append("  (none · L1 caught up to L0)")
+    except Exception as _e:
+        sections.append(f"  (tail query failed · {type(_e).__name__})")
+
     # Trade state
     sections.append("\n## CURRENT TRADE STATE")
     try:
