@@ -116,7 +116,7 @@ AGENT_WATCHER = {
 
 # Anthropic API endpoint + env-file location (per the multi-env doctrine ·
 # ANTHROPIC_API_KEY lives in the WR ops env, not surfline/.env)
-ANTHROPIC_API_KEY_ENV_FILE = "$HOME/.memory_road/runtime/websiterecycling/.env"
+ANTHROPIC_API_KEY_ENV_FILE = "/root/wc/runtime/websiterecycling/.env"
 ANTHROPIC_API_KEY_NAME = "ANTHROPIC_API_KEY"
 ANTHROPIC_MODEL_OPUS_47 = "claude-opus-4-7"
 
@@ -2221,9 +2221,9 @@ def run_shadow_cortex():
     # per feedback_two_agents_on_important_steps_LOCKED · pinned to Opus 4.7 via
     # claude CLI subscription because codex 5.5 was quota-exhausted 2026-05-28).
     import os as _os
-    _os.environ.setdefault('WAVE_WORKER_DIR', '$HOME/.memory_road/workers/watcher')
+    _os.environ.setdefault('WAVE_WORKER_DIR', '/root/.watcher')
     _os.environ.setdefault('WAVE_WORKER_NAME', 'WATCHER')
-    _os.makedirs('$HOME/.memory_road/workers/watcher', exist_ok=True)
+    _os.makedirs('/root/.watcher', exist_ok=True)
     result = _call_opus_47(f"""You are the Shadow Cortex — a continuity guardian for an AI assistant called WC (also known as Wave). WC is a general-purpose AI engineering partner working with operator Ricky · current major focus is building Memory Road (a multi-layer AI memory system) · Website Recycling (WR · the SMB rebuild product) · and Wave Studio (the AI commercial generator). WC has trading positions in a legacy ledger but WC is NOT a trading agent · the trade ledger is informational background only.
 
 Based on the following data, produce a JSON identity/mind state snapshot REFLECTING WHAT WC IS ACTUALLY WORKING ON RECENTLY (per the summaries below).
@@ -2432,7 +2432,7 @@ def build_rollover_packet():
     # Fixed 2026-05-28 02:55 UTC (Ricky: "Fix Watcher? How so?") · the
     # CCODE packet was overwriting this path causing Wave to read the
     # laptop-trading agent's state instead of her own.
-    wave_continuity_mem = Path("$HOME/.claude/projects/<project-id>/memory/project_continuity_state.md")
+    wave_continuity_mem = Path("/root/.claude/projects/-root/memory/project_continuity_state.md")
     try:
         wave_continuity_mem.write_text(f"""---
 name: Continuity State — Live
@@ -2474,7 +2474,7 @@ The Continuity Kernel preserved your full state. Read below and continue.
     # They pollute actionable mail and retrigger watchers.
     kernel_notice = RUNTIME / "wc_rollover_notice.txt"
     try:
-        kernel_notice.write_text("[KERNEL] Rollover complete. Full packet at $HOME/.memory_road/runtime/wc_rollover_packet.md\n")
+        kernel_notice.write_text("[KERNEL] Rollover complete. Full packet at /root/wc/runtime/wc_rollover_packet.md\n")
     except:
         pass
 
@@ -2775,7 +2775,7 @@ def build_ccode_packet():
     packet = "\n".join(sections)
     CCODE_PACKET.write_text(packet)
 
-    # CCODE packet stays in $HOME/.memory_road/runtime/ for laptop-Ccode to SCP/read.
+    # CCODE packet stays in /root/wc/runtime/ for laptop-Ccode to SCP/read.
     # Previously this ALSO wrote to /root/.claude/projects/-root/memory which
     # is WAVE's memory dir · that caused Wave's hook to inject CCODE's
     # trading state into Wave's context. Fixed 2026-05-28 02:55 UTC.
