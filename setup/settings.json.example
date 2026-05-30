@@ -1,0 +1,41 @@
+{
+  "_comment_": "Memory Road · hook registration · merge BOTH blocks into your existing ~/.claude/settings.json. The SessionStart hook (Layer A) fires at session boot · the UserPromptSubmit hooks (Layer B) fire on every user prompt. Belt + suspenders · the harness guarantees memory injection regardless of Claude's discipline.",
+
+  "_doctrine_": "Per feedback_hard_hook_harness_enforced_memory_LOCKED.md · memory must be a property of the HARNESS not a property of Claude's discipline. Soft hooks (MEMORY.md bullets) are trim-vulnerable. Hard hooks (settings.json) cannot be removed by a cleanup agent.",
+
+  "hooks": {
+
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat $HOME/.claude/projects/<project-id>/memory/project_continuity_state.md 2>/dev/null",
+            "timeout": 5,
+            "description": "Memory Road · inject L5 WATCHER cortex packet at session boot (before first user prompt)"
+          }
+        ]
+      }
+    ],
+
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/inject_continuity_packet.sh",
+            "timeout": 5,
+            "description": "Memory Road · re-inject cortex packet on every user prompt (handles post-/compact freshness)"
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/force_memory_use.sh",
+            "timeout": 5,
+            "description": "Memory Road · prepend USE-MEMORY reminder to every prompt"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+[Unit]
+Description=Memory Road · L0 Substrate · Continuity Kernel
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/memory_road
+ExecStart=/usr/bin/python3 /opt/memory_road/bin/continuity_kernel.py
+Restart=always
+RestartSec=10
+
+# Resource limits (substrate is tiny · just polls JSONLs + writes SQLite)
+MemoryMax=256M
+CPUQuota=20%
+
+# Logging
+StandardOutput=append:/var/log/memory_road/kernel.log
+StandardError=append:/var/log/memory_road/kernel.err
+
+# Environment
+Environment="PYTHONUNBUFFERED=1"
+Environment="MEMORY_ROAD_DB=/var/lib/memory_road/continuity_kernel.db"
+Environment="MEMORY_ROAD_TRANSCRIPTS=/root/.claude/projects"
+
+[Install]
+WantedBy=multi-user.target

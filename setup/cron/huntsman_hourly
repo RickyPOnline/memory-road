@@ -1,0 +1,7 @@
+# Memory Road · HUNTSMAN hourly sweep
+# Drop this file in /etc/cron.d/ to enable
+# Runs HUNTSMAN at top of every hour · surfaces new unfinished items
+
+PATH=/usr/local/bin:/usr/bin:/bin
+
+0 * * * * root bash /opt/memory_road/bin/huntsman_cron.sh
