@@ -1,0 +1,23 @@
+[Unit]
+Description=Wave Memory Road · L3 CHRONICLER Rotator · plows recent-first L3 backfill
+After=network.target wave-furrow-continuous.service
+Wants=wave-furrow-continuous.service
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/tmp/chronicler_rotator_state
+ExecStart=/usr/bin/bash /root/wc/runtime/chronicler_rotator_manager.sh
+Restart=always
+RestartSec=60
+
+MemoryMax=1G
+CPUQuota=30%
+
+StandardOutput=append:/tmp/chronicler_rotator_manager.log
+StandardError=append:/tmp/chronicler_rotator_manager.err
+
+[Install]
+WantedBy=multi-user.target

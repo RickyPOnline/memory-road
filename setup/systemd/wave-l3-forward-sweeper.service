@@ -1,0 +1,23 @@
+[Unit]
+Description=Wave Memory Road · L3 CHRONICLER Forward Sweeper · keeps now-edge summarized
+After=network.target wave-furrow-continuous.service
+Wants=wave-furrow-continuous.service
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/.forward_sweeper
+ExecStart=/usr/bin/bash /root/wc/runtime/chronicler_forward_sweeper.sh
+Restart=always
+RestartSec=30
+
+MemoryMax=512M
+CPUQuota=20%
+
+StandardOutput=append:/tmp/chronicler_forward_sweeper.log
+StandardError=append:/tmp/chronicler_forward_sweeper.err
+
+[Install]
+WantedBy=multi-user.target
