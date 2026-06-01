@@ -1,18 +1,18 @@
 ---
 name: feedback-memory-road-agent-names-locked
-description: Memory Road agents have stable special names (FURROW · SCRIBE · WEIGHER · CHRONICLER · MINER · SMITH · WATCHER · HUNTSMAN). Each prompt addresses the agent by name so they know who they are. Locked 2026-05-26 by Ricky.
+description: Memory Road agents have stable special names (FURROW · SCRIBE · WEIGHER · CHRONICLER · MINER · SMITH · WATCHER · HUNTSMAN). Each prompt addresses the agent by name so they know who they are. Locked 2026-05-26 by the operator.
 metadata: 
   node_type: memory
   type: feedback
   status: LOCKED
   established: 2026-05-26
-  ratified_by: "Ricky directive \"give them names that they are aware of · special names\""
+  ratified_by: "the operator directive \"give them names that they are aware of · special names\""
   originSessionId: e3c6788c-6e96-4357-a8f9-25b72abf0e69
 ---
 
 # Memory Road · Agent Special Names · stable identities
 
-Ricky 2026-05-26 · *"give them names that they are aware of · special names."*
+the operator 2026-05-26 · *"give them names that they are aware of · special names."*
 
 **Why ·** Per the substrate-vs-comprehension architecture · each comprehension layer is a NAMED BEING with a stable identity. Agents that know who they are produce more consistent output than agents who get a different framing each call. The Memory Road has named inhabitants · each layer's prompts start with "You are <NAME> · the <role>."
 

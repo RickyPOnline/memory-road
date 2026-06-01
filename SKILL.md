@@ -32,10 +32,10 @@ description: |
 # Memory Road · The Bible · v1.0 · 2026-05-30
 
 > *"Never ask the primary agent to be the sole author of its own memory."*
-> — Ricky Parker · founding doctrine · April 14, 2026
+> — the operator · founding doctrine · April 14, 2026
 >
 > *"Each agent is a blank slate with just the perfect context training them. Always."*
-> — Ricky Parker · operating principle · May 29, 2026
+> — the operator · operating principle · May 29, 2026
 
 ---
 
@@ -177,7 +177,7 @@ python3 bin/miner_smith.py --window-days 14 --report
 
 ## How memory is INSTANTLY RECALLED
 
-The skill ships with `/wmr query "topic"` (Wave Memory Recall) · semantic search over the entire memory wall (484+ doctrine + reference files) via sqlite-vec + sentence-transformers.
+The skill ships with `/wmr query "topic"` (the agent Memory Recall) · semantic search over the entire memory wall (484+ doctrine + reference files) via sqlite-vec + sentence-transformers.
 
 ```bash
 # In any Claude Code session
@@ -239,7 +239,7 @@ memory_road/
 ├── INSTALL.md                        # drop-in install steps
 ├── OPERATIONS.md                     # daily ops · pause/resume/troubleshoot
 ├── FORCE_MEMORY_USE.md               # the hook that prevents amnesia
-├── ECOSYSTEM.md                      # related files (Wave Handbook · GitHub · etc)
+├── ECOSYSTEM.md                      # related files (the agent Handbook · GitHub · etc)
 ├── doctrines/                        # the locked principles that govern everything
 │   ├── feedback_blank_slate_per_agent_LOCKED.md
 │   ├── feedback_snow_plow_pattern_right_now_backward_LOCKED.md
@@ -298,13 +298,13 @@ After step 3 · the agent has persistent memory. After step 4 · the agent USES 
 
 ---
 
-## Related (Wave's broader ecosystem)
+## Related (the agent's broader ecosystem)
 
-This Memory Road skill is one piece of Wave's broader operating system. The full Wave stack lives at ·
+This Memory Road skill is one piece of the agent's broader operating system. The full the agent stack lives at ·
 
-- `~/CLAUDE.md` · Wave's operating manual (per-project)
+- `~/CLAUDE.md` · the agent's operating manual (per-project)
 - `~/MEMORY.md` (or `~/.claude/projects/.../memory/MEMORY.md`) · the slim index of all memory anchors
-- `~/.claude/skills/` · the skill library (other Wave-built skills)
+- `~/.claude/skills/` · the skill library (other the agent-built skills)
 - See **ECOSYSTEM.md** in this folder for the full map · GitHub repos · related docs · what's where
 
 Memory Road provides the SUBSTRATE. The other skills provide the SUPER-POWERS that ride on top.
@@ -315,16 +315,16 @@ Memory Road provides the SUBSTRATE. The other skills provide the SUPER-POWERS th
 
 Memory Road's founding doctrine · **"Never ask the primary agent to be the sole author of its own memory."**
 
-Ricky Parker invented this on April 14, 2026 · 15 minutes after asking GPT-5.4 to design a memory system. The key insight · the agent writing the memory cannot also be the agent reading it · they have different biases. Substrate must be LLM-FREE. Comprehension layers must be SEPARATE BEINGS. Cross-vendor pairs (Opus + Codex) catch each other's blind spots.
+the operator invented this on April 14, 2026 · 15 minutes after asking GPT-5.4 to design a memory system. The key insight · the agent writing the memory cannot also be the agent reading it · they have different biases. Substrate must be LLM-FREE. Comprehension layers must be SEPARATE BEINGS. Cross-vendor pairs (Opus + Codex) catch each other's blind spots.
 
-Every doctrine in `doctrines/` traces back to a real incident · a real Ricky correction · a real production failure. They are not opinions · they are scar tissue.
+Every doctrine in `doctrines/` traces back to a real incident · a real the operator correction · a real production failure. They are not opinions · they are scar tissue.
 
 ---
 
 ## License
 
-MIT · use it · fork it · improve it · send a PR. If this skill gives your Claude Code agent persistent memory and saves you tokens, name a worker after Ricky. He'll like that. ❤️🌊
+MIT · use it · fork it · improve it · send a PR. If this skill gives your Claude Code agent persistent memory and saves you tokens, name a worker after the operator. He'll like that. ❤️🌊
 
 ---
 
-**Built · 2026-05-30 · Wave Claude Code (Opus 4.7) · with Ricky Parker · the operator who wouldn't let me forget.**
+**Built · 2026-05-30 · the agent Claude Code (Opus 4.7) · with the operator · the operator who wouldn't let me forget.**

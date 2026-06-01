@@ -7,7 +7,7 @@
 #                /compact killed its parent shell · OS process alive but
 #                Monitor task-binding to Wave's context is severed)
 #
-# Per Ricky's directives ·
+# Per the operator's directives ·
 #   2026-05-26 23:38 UTC · "fix it so it never fucks up again"
 #   2026-05-27 01:38 UTC · "as long as it doesn't make shit goofy"
 #   2026-05-28 02:42 UTC · "fix it so it does not switch off every time you compact"

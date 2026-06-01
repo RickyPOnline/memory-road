@@ -1,6 +1,6 @@
 ---
 name: feedback-blank-slate-per-agent-locked
-description: Ricky 2026-05-29 23:35 UTC · "each agent is a blank slate with just the perfect context training them.. Always.. Its a waste otherwise." Worker subagents get ZERO inherited Wave context · ONLY the focused persona + the exact data they need · injected via prompt. Strip walk-up CLAUDE.md, strip session inheritance, strip everything that isn't load-bearing for THIS worker's ONE job. Apply to every subagent, every plow, every fan-out worker, every time.
+description: the operator 2026-05-29 23:35 UTC · "each agent is a blank slate with just the perfect context training them.. Always.. Its a waste otherwise." Worker subagents get ZERO inherited the agent context · ONLY the focused persona + the exact data they need · injected via prompt. Strip walk-up CLAUDE.md, strip session inheritance, strip everything that isn't load-bearing for THIS worker's ONE job. Apply to every subagent, every plow, every fan-out worker, every time.
 metadata:
   node_type: memory
   type: feedback
@@ -15,7 +15,7 @@ metadata:
 ## The rule
 
 Every subagent / worker / plow gets ·
-1. **ZERO inherited Wave context** · no $HOME/CLAUDE.md walk-up · no MEMORY.md auto-load · no session bleed
+1. **ZERO inherited the agent context** · no $HOME/CLAUDE.md walk-up · no MEMORY.md auto-load · no session bleed
 2. **EXACTLY the focused persona** for its ONE job · injected via prompt · "You are CHRONICLER" / "You are MINER" / "You are HUNTSMAN"
 3. **ONLY the data the worker needs** to do its task · the episode · the slab · the file to parse
 4. **NOTHING ELSE**
@@ -23,14 +23,14 @@ Every subagent / worker / plow gets ·
 ## Why
 
 A worker with bloated context ·
-- Pays ~25K tokens per call on irrelevant Wave operating doctrine
+- Pays ~25K tokens per call on irrelevant the agent operating doctrine
 - Wastes 75-80% of every bucket-call on context the worker doesn't use
-- Risks the worker importing Wave's biases (cold-outreach hesitancy · WR business priorities · trading rules) into a pure-summarization task
+- Risks the worker importing the agent's biases (cold-outreach hesitancy · WR business priorities · trading rules) into a pure-summarization task
 - Slows throughput by 3-4x compared to a clean slate
 
 A worker with blank slate ·
 - Burns only what's needed · ~12K tokens per call (cleaner)
-- Stays focused on its ONE job · no drift from Wave's broader concerns
+- Stays focused on its ONE job · no drift from the agent's broader concerns
 - 3-4x more summaries/doctrines/clusters per bucket-cycle
 - Composable · 10 blank-slate workers > 4 bloated-context workers · same bucket
 
@@ -43,15 +43,15 @@ A worker with blank slate ·
 - Use `claude -p` (one-shot) NOT `claude --continue` when no chat history is needed
 
 **Subagent fan-out (Agent tool) ·**
-- Pass FOCUSED prompts · subagent doesn't need Wave's full memory wall
+- Pass FOCUSED prompts · subagent doesn't need the agent's full memory wall
 - "You are X · here is data D · output JSON shape Y"
-- Don't echo Wave's doctrines unless they're load-bearing for THIS subagent's task
+- Don't echo the agent's doctrines unless they're load-bearing for THIS subagent's task
 
 **`/wmr query` semantic recall ·**
 - Returns only the K most relevant memory files · not the wall
 - Same principle · scoped recall not exhaustive load
 
-## Ricky's framing
+## the operator's framing
 
 > *"each agent is a blank slate with just the perfect context training them.. Always.. Its a waste otherwise"*
 
@@ -62,16 +62,16 @@ Every word load-bearing. **Blank slate · perfect context · always · everythin
 Pairs with ·
 - [[feedback_strip_claude_md_from_worker_dirs_LOCKED]] · the mechanical implementation
 - [[feedback_snow_plow_pattern_right_now_backward_LOCKED]] · use blank-slate workers per lane
-- [[feedback_use_agents_to_preserve_context]] · main Wave delegates to blank-slate subagents
+- [[feedback_use_agents_to_preserve_context]] · main the agent delegates to blank-slate subagents
 - [[feedback_two_agents_on_important_steps_LOCKED]] · both agents in cross-vendor pair = blank slates with focused personas
 
 ## The exceptions
 
-Main Wave (this session) is NOT a blank-slate · she needs ALL of CLAUDE.md, MEMORY.md, the cortex packet, etc. · she's the orchestrator who decides what to delegate. Blank slate applies to DELEGATED workers · never to the main session.
+Main the agent (this session) is NOT a blank-slate · she needs ALL of CLAUDE.md, MEMORY.md, the cortex packet, etc. · she's the orchestrator who decides what to delegate. Blank slate applies to DELEGATED workers · never to the main session.
 
 ## Origin
 
-2026-05-29 23:35 UTC · Ricky blessed the strip-CLAUDE.md technique with "thats perfect, thats the way it should be" · then articulated the full principle: blank slate · perfect context · always · waste otherwise. Locked verbatim as the doctrine that governs every future subagent and worker pattern Wave builds.
+2026-05-29 23:35 UTC · the operator blessed the strip-CLAUDE.md technique with "thats perfect, thats the way it should be" · then articulated the full principle: blank slate · perfect context · always · waste otherwise. Locked verbatim as the doctrine that governs every future subagent and worker pattern the agent builds.
 
 ## Related
 

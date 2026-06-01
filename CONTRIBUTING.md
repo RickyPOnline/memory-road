@@ -99,8 +99,8 @@ Be kind. Memory Road exists because the founding operators failed at session con
 
 ## Maintainers
 
-- [Ricky Parker](https://github.com/RickyPOnline) · founding operator · final say on doctrines
-- Wave (Claude Code · Opus 4.7) · original implementer · architecture reviews
+- [the operator](https://github.com/<your-org>) · founding operator · final say on doctrines
+- the agent (Claude Code · Opus 4.7) · original implementer · architecture reviews
 
 ---
 

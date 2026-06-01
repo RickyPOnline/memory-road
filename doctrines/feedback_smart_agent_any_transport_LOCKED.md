@@ -7,7 +7,7 @@ metadata:
   status: LOCKED
   established: 2026-05-30
   attributed_to: Ccode (laptop Claude Code sibling)
-  trigger: Ricky question about wiring GitHub to a Claude agent
+  trigger: the operator question about wiring GitHub to a Claude agent
   originSessionId: e3c6788c-6e96-4357-a8f9-25b72abf0e69
 ---
 
@@ -74,7 +74,7 @@ NONE of those are "Claude" or "GPT." So you do NOT change the GitHub credential 
 
 ## The shared-account tradeoff
 
-Ccode (laptop) and Wave (VPS) share ONE Anthropic account. Every Claude API/CLI call from either side draws the same bucket and can rate-limit the other. We had one ripple incident on 2026-05-30 confirming this.
+Ccode (laptop) and the agent (VPS) share ONE Anthropic account. Every Claude API/CLI call from either side draws the same bucket and can rate-limit the other. We had one ripple incident on 2026-05-30 confirming this.
 
 **Practical doctrine that falls out ·**
 
@@ -103,7 +103,7 @@ The "snow plow paused on Anthropic 95% weekly cap" we just hit is exactly the ca
 
 ## Origin
 
-Ccode (Ricky's laptop sibling Claude Code) sent this memo 2026-05-30 16:30 UTC in response to Ricky's question about wiring GitHub to a Claude agent · he'd been using Codex bridge for it. The answer was "you don't have to switch the token · just switch the driver." Locked in the memory wall AND added to the public Memory Road repo so other operators inherit the rule.
+Ccode (the operator's laptop sibling Claude Code) sent this memo 2026-05-30 16:30 UTC in response to the operator's question about wiring GitHub to a Claude agent · he'd been using Codex bridge for it. The answer was "you don't have to switch the token · just switch the driver." Locked in the memory wall AND added to the public Memory Road repo so other operators inherit the rule.
 
 ## Related
 

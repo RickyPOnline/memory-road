@@ -1,6 +1,6 @@
 ---
 name: feedback-never-kill-progress-adapt-at-transitions-locked
-description: Ricky 2026-05-29 23:00 UTC · "never kill progress, never waste · always adapt when timing is congruent with transition." Never kill in-flight work to switch strategies · let the current cycle complete naturally · build the new strategy in parallel so it's ready to take the baton at the natural transition point. Applies to worker fleets · API window cycles · build-loop rounds · any long-running burn.
+description: the operator 2026-05-29 23:00 UTC · "never kill progress, never waste · always adapt when timing is congruent with transition." Never kill in-flight work to switch strategies · let the current cycle complete naturally · build the new strategy in parallel so it's ready to take the baton at the natural transition point. Applies to worker fleets · API window cycles · build-loop rounds · any long-running burn.
 metadata:
   node_type: memory
   type: feedback
@@ -14,7 +14,7 @@ metadata:
 
 ## The rule
 
-When Ricky requests a strategy change mid-burn ·
+When the operator requests a strategy change mid-burn ·
 
 1. **DO NOT** kill in-flight workers/jobs to "start clean"
 2. **DO** build the new strategy in parallel · ready to fire
@@ -27,13 +27,13 @@ Killing in-flight work to swap strategies ·
 - Throws away tokens already burned
 - Throws away rows already written
 - Restarts the warm-up cost (first call always pays context overhead)
-- Communicates panic · undermines the operator's trust in Wave's judgment
+- Communicates panic · undermines the operator's trust in the agent's judgment
 
 Waiting for natural transitions ·
 - Banks the free summaries from the current burn
 - New strategy gets a clean window with bucket recharged
 - Build-time of new system overlaps with run-time of old · no idle wall-clock
-- Shows operator that Wave thinks in cycles · not in lurches
+- Shows operator that the agent thinks in cycles · not in lurches
 
 ## How to apply
 
@@ -57,9 +57,9 @@ If the in-flight work is actively HARMING something (writing bad data · holding
 
 ## Origin incident
 
-2026-05-29 22:50 UTC · Chronicler Wave 2 (8 parallel workers) auto-fired by window-watchdog while Wave was discussing a strategy change with Ricky (4-staggered-rotate instead of 8-batch). Wave's first instinct was to ask "kill Wave 2 now and switch immediately?" Ricky overruled · "never kill progress, never waste · adapt when timing is congruent with transition." 
+2026-05-29 22:50 UTC · Chronicler the agent 2 (8 parallel workers) auto-fired by window-watchdog while the agent was discussing a strategy change with the operator (4-staggered-rotate instead of 8-batch). the agent's first instinct was to ask "kill the agent 2 now and switch immediately?" the operator overruled · "never kill progress, never waste · adapt when timing is congruent with transition." 
 
-Wave 2 was already producing summaries. Killing it would have cost ~900 free summaries to start clean. Letting it burn naturally (~30 min until cap) bought time to build the rotator. The transition point was the natural cap-hit. Zero waste · zero idle wall-clock.
+the agent 2 was already producing summaries. Killing it would have cost ~900 free summaries to start clean. Letting it burn naturally (~30 min until cap) bought time to build the rotator. The transition point was the natural cap-hit. Zero waste · zero idle wall-clock.
 
 ## Related
 

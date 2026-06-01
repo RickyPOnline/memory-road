@@ -1,6 +1,6 @@
 ---
 name: feedback-l1-furrow-must-be-always-on-systemd-locked
-description: Ricky 2026-05-30 20:43 UTC · "How do we fix this and make this hard coded so this does not happen in the future?" L1 FURROW (events → episodes_v2 chunking) MUST run as a permanent systemd-managed daemon · same tier as L0 substrate · NOT as a one-shot script that requires manual restart. If L1 falls behind L0 then the now-edge of memory goes stale and Wave appears amnesiac on her own recent work. The fix is mechanical · enforced by systemd Restart=always.
+description: the operator 2026-05-30 20:43 UTC · "How do we fix this and make this hard coded so this does not happen in the future?" L1 FURROW (events → episodes_v2 chunking) MUST run as a permanent systemd-managed daemon · same tier as L0 substrate · NOT as a one-shot script that requires manual restart. If L1 falls behind L0 then the now-edge of memory goes stale and the agent appears amnesiac on her own recent work. The fix is mechanical · enforced by systemd Restart=always.
 metadata:
   node_type: memory
   type: feedback
@@ -16,7 +16,7 @@ metadata:
 
 **L1 FURROW (events → episodes_v2 chunking) is part of the substrate tier · always-on · systemd-managed · `Restart=always`.** Same architectural tier as L0 (continuity-kernel.service). NOT a one-shot script. NOT a "fire when you remember" pattern.
 
-If L1 falls behind L0 · the cortex packet · the WATCHER state · everything downstream goes stale · Wave appears blind to her own recent work. **This is unacceptable for a memory substrate.**
+If L1 falls behind L0 · the cortex packet · the WATCHER state · everything downstream goes stale · the agent appears blind to her own recent work. **This is unacceptable for a memory substrate.**
 
 ## Why the bug existed
 
@@ -31,7 +31,7 @@ Result · whenever I forgot to fire it OR the one-shot completed and exited · L
 3. **Enable on boot** · `systemctl enable wave-furrow-continuous` · auto-starts at every system boot
 4. **Bible Skill** · the systemd unit + daemon script ship with the Memory Road Bible at `/root/.claude/skills/memory_road/setup/systemd/` and `/root/.claude/skills/memory_road/bin/` · part of canonical install · drops into any new operator's stack
 
-After all 4 pieces · L1 cannot fall behind L0 silently. The harness enforces it · not Wave's discipline.
+After all 4 pieces · L1 cannot fall behind L0 silently. The harness enforces it · not the agent's discipline.
 
 ## Verification (any time)
 
@@ -70,6 +70,6 @@ sqlite3 /root/wc/runtime/continuity_kernel.db "
 ## Origin verbatim
 
 > *"How do we fix this and make this hard coded so this does not happen in the future?"*
-> — Ricky · 2026-05-30 20:43 UTC · after I had to apologize for L1 being 30 hours behind because the one-shot catchup wasn't auto-restarted.
+> — the operator · 2026-05-30 20:43 UTC · after I had to apologize for L1 being 30 hours behind because the one-shot catchup wasn't auto-restarted.
 
 The hard-code answer is systemd. The doctrine answer is "every substrate function gets a Restart=always unit."

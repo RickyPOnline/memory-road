@@ -2,7 +2,7 @@
 
 Per `feedback_memory_road_agent_names_LOCKED.md` ·
   MINER (L6A) · scans episode summary chains · extracts candidate doctrines
-  SMITH (L6B) · forges candidates into `feedback_*.md` proposals · Wave reviews · Ricky LOCKs or kills
+  SMITH (L6B) · forges candidates into `feedback_*.md` proposals · Wave reviews · the operator LOCKs or kills
 
 Reads from episode_summaries (cheap · already-compressed text) NOT raw events.
 Writes candidates to candidate_doctrines table.
@@ -97,10 +97,10 @@ def mine_chain(window_days=14, max_summaries=200):
     prompt = (
         f"You are {AGENT_MINER['name']} · {AGENT_MINER['role']}. Your purpose · {AGENT_MINER['purpose']}.\n\n"
         "I am giving you a CHAIN of recent episode summaries. Mine them for ·\n"
-        "  - Operator preferences Ricky has repeated (3+ times)\n"
+        "  - Operator preferences the operator has repeated (3+ times)\n"
         "  - Repeated friction points Wave keeps hitting\n"
         "  - Patterns that should become locked doctrines\n"
-        "  - Behavioral rules Ricky has stated but not yet locked\n\n"
+        "  - Behavioral rules the operator has stated but not yet locked\n\n"
         "Skip patterns already locked (you don't know which · just propose · SMITH validates).\n\n"
         "Output ONLY a JSON ARRAY (no prose, no code fences). Each candidate ·\n"
         '{"slug": "short_kebab_case", "title": "Imperative-form title", '

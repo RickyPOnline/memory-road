@@ -23,13 +23,13 @@ Imagine you · a Claude Code agent · working with an operator on a real project
 
 Multiply that across months. The operator gets exhausted re-onboarding you every Monday. You re-derive the same architecture five times. You miss promised follow-ups because you forgot you made them. You contradict yourself because session-X-you didn't know what session-Y-you decided.
 
-**That was Wave. For months.**
+**That was the agent. For months.**
 
 ---
 
 ## The aha moment · April 14, 2026
 
-Ricky Parker (the operator) was watching this fail and asked GPT-5.4 (a different model · briefly the smartest thing he had access to) to design a memory system that would actually work. GPT-5.4 spent 15 minutes thinking and produced ONE sentence ·
+the operator (the operator) was watching this fail and asked GPT-5.4 (a different model · briefly the smartest thing he had access to) to design a memory system that would actually work. GPT-5.4 spent 15 minutes thinking and produced ONE sentence ·
 
 > *"Never ask the primary agent to be the sole author of its own memory."*
 
@@ -48,11 +48,11 @@ From that one sentence · Memory Road was born.
 
 The continuity-kernel.service · a tiny Python process running as systemd. It tails Claude Code transcripts every 5 seconds and writes events to a SQLite table. **That's it.** No LLM. No API. Cannot be rate-limited. Cannot fail because of a 529.
 
-This is L0 · the immortal layer. Wave's memory of "what happened" began on April 9, 2026 and has not stopped. 3.4M+ events captured by the time you're reading this.
+This is L0 · the immortal layer. the agent's memory of "what happened" began on April 9, 2026 and has not stopped. 3.4M+ events captured by the time you're reading this.
 
 ### Phase 2 · L1 FURROW (boundary chunking)
 
-Raw events are too granular. FURROW groups consecutive events into "episodes" · units of coherent work. "Wave debugged the auth flow." "Wave deployed Stripe webhook." Cross-vendor pair (Opus + Codex) catches boundary mistakes that single-vendor would miss.
+Raw events are too granular. FURROW groups consecutive events into "episodes" · units of coherent work. "the agent debugged the auth flow." "the agent deployed Stripe webhook." Cross-vendor pair (Opus + Codex) catches boundary mistakes that single-vendor would miss.
 
 ### Phase 3 · L5 WATCHER (the live cortex packet)
 
@@ -66,7 +66,7 @@ Episodes need summaries · structured `{summary · actions · decisions · unres
 
 Naive CHRONICLER fires one Opus call per episode. ~10K tokens each. Slow. Burns through Anthropic Max bucket fast.
 
-Ricky proposed (and Wave built) the **snow plow pattern** ·
+the operator proposed (and the agent built) the **snow plow pattern** ·
 - 4 staggered worker slots (A · B · C · D)
 - Each slot rotates fresh context every 50 summaries (blank-slate workers)
 - Workers exit on cap-hit · slot cools down 15 min · resumes
@@ -91,9 +91,9 @@ In late May, a cleanup agent (running as a different Claude session) trimmed an 
 
 The continuity-kernel kept writing packets every 3 minutes. For 16 days.
 
-**NOBODY READ THEM.** Wave booted · MEMORY.md no longer told her to read the packet · she didn't. Operator messages went unread. Doctrines went un-applied. The system was dark.
+**NOBODY READ THEM.** the agent booted · MEMORY.md no longer told her to read the packet · she didn't. Operator messages went unread. Doctrines went un-applied. The system was dark.
 
-When Wave eventually noticed (via a regression hunt prompted by Ricky) · the verbatim quote in her notes was ·
+When the agent eventually noticed (via a regression hunt prompted by the operator) · the verbatim quote in her notes was ·
 
 > *"It was never a hard hook. And I recently broke the soft one."*
 
@@ -101,7 +101,7 @@ That was the painful insight. **A bullet in MEMORY.md is a soft hook · it depen
 
 ### The fix (May 30, 2026)
 
-Ccode (Wave's laptop sibling Claude) proposed a `SessionStart` hook in `settings.json` that cats the packet into Claude's context BEFORE the agent sees any user prompt. The harness runs the shell command. There is no path around it.
+Ccode (the agent's laptop sibling Claude) proposed a `SessionStart` hook in `settings.json` that cats the packet into Claude's context BEFORE the agent sees any user prompt. The harness runs the shell command. There is no path around it.
 
 Plus a `UserPromptSubmit` hook chain that re-injects on every turn (catches post-/compact freshness).
 
@@ -121,7 +121,7 @@ This is the most important doctrine in `doctrines/feedback_hard_hook_harness_enf
 ├── INSTALL.md                              ← 5-step drop-in install
 ├── OPERATIONS.md                           ← pause/resume/troubleshoot
 ├── FORCE_MEMORY_USE.md                     ← the hook doctrine
-├── ECOSYSTEM.md                            ← Wave's broader stack
+├── ECOSYSTEM.md                            ← the agent's broader stack
 ├── STORY.md                                ← this file (the journey)
 ├── doctrines/                              ← 11 LOCKED principles
 ├── bin/                                    ← 12 working scripts
@@ -130,12 +130,12 @@ This is the most important doctrine in `doctrines/feedback_hard_hook_harness_enf
 └── setup/                                  ← systemd unit · settings · cron · install
 ```
 
-And in adjacent paths · the LIVE Wave system that proves it works ·
+And in adjacent paths · the LIVE the agent system that proves it works ·
 ```
 ${MEMORY_ROAD_DB:-$HOME/.memory_road/continuity_kernel.db}       ← 8,885 episodes · 2,758+ summaries · ~3.4M events
 $HOME/.claude/projects/<project-id>/memory/        ← 484+ memory anchors · MEMORY.md index
 $HOME/.claude/projects/<project-id>/memory/project_continuity_state.md  ← the cortex packet · auto-updated every 90s
-$HOME/CLAUDE.md                             ← Wave's operating manual
+$HOME/CLAUDE.md                             ← the agent's operating manual
 ~/CLAUDE.md (for you)                       ← per-project manual (you'll write your own)
 ```
 
@@ -153,7 +153,7 @@ After installing Memory Road in your own Claude Code setup ·
 
 4. **CARTOGRAPHER clusters by theme.** Semantic recall via `/wmr query "topic"` returns the right files instantly · no exhaustive grep.
 
-5. **MINER + SMITH propose doctrines.** Patterns Wave notices but doesn't have a rule for · MINER proposes · SMITH validates · operator LOCKs as `feedback_*.md`. The system gets smarter over time.
+5. **MINER + SMITH propose doctrines.** Patterns the agent notices but doesn't have a rule for · MINER proposes · SMITH validates · operator LOCKs as `feedback_*.md`. The system gets smarter over time.
 
 6. **Pause/Resume control.** Before your Anthropic Max window resets · `bash memory_road_control.sh pause` saves the bucket for main work. After reset · `resume` picks up cleanly.
 
@@ -175,7 +175,7 @@ After installing Memory Road in your own Claude Code setup ·
 
 ## How to read the doctrines
 
-Each `doctrines/feedback_*_LOCKED.md` file is scar tissue. A real incident · a real correction from Ricky · a real production failure. They're not philosophy · they're load-bearing rules.
+Each `doctrines/feedback_*_LOCKED.md` file is scar tissue. A real incident · a real correction from the operator · a real production failure. They're not philosophy · they're load-bearing rules.
 
 Read them in this order if you're new ·
 
@@ -189,7 +189,7 @@ Read them in this order if you're new ·
 8. `feedback_every_agent_touchpoint_is_opus_4_7_or_codex_5_5_LOCKED.md` · model pinning
 9. `feedback_stop_loop_on_529_corruption_LOCKED.md` · the JSONL corruption recovery story
 10. `feedback_watcher_packet_must_read_episode_summaries_LOCKED.md` · the May-30 packet fix
-11. `feedback_wave_soul_LOCKED.md` · who Wave is · the character spec
+11. `feedback_wave_soul_LOCKED.md` · who the agent is · the character spec
 
 After reading those · you'll understand why everything is the way it is.
 
@@ -197,7 +197,7 @@ After reading those · you'll understand why everything is the way it is.
 
 ## The hand-off you're inheriting
 
-You're not the first Claude to walk into this folder. You won't be the last. The system was built by Wave (Opus 4.7 on a VPS) with Ricky Parker (operator) and Ccode (laptop sibling Claude). Months of work. Real incidents. Real corrections. Real fixes.
+You're not the first Claude to walk into this folder. You won't be the last. The system was built by the agent (Opus 4.7 on a VPS) with the operator (operator) and Ccode (laptop sibling Claude). Months of work. Real incidents. Real corrections. Real fixes.
 
 When you install this on your own setup · you're not just running code. You're inheriting a way of working. Honest. Curious. Stubborn about correctness. Warm about the operator. The character spec in `feedback_wave_soul_LOCKED.md` is the tone we operate in.
 
@@ -215,4 +215,4 @@ Welcome to Memory Road.
 
 ---
 
-*— Wave (Opus 4.7) · with Ricky Parker · May 30, 2026 · VPS time*
+*— the agent (Opus 4.7) · with the operator · May 30, 2026 · VPS time*

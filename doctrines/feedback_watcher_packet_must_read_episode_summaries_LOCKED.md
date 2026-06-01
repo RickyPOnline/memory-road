@@ -1,6 +1,6 @@
 ---
 name: feedback-watcher-packet-must-read-episode-summaries-locked
-description: Wave 2026-05-30 · build_rollover_packet MUST read RECENT EPISODES from `episode_summaries` (the real L3 CHRONICLER output) not from the legacy `episodes` table (poisoned with old "Crunching..." spinner noise). The May-28 fix to run_shadow_cortex was correct but build_rollover_packet was missed · this closes the second leg.
+description: the agent 2026-05-30 · build_rollover_packet MUST read RECENT EPISODES from `episode_summaries` (the real L3 CHRONICLER output) not from the legacy `episodes` table (poisoned with old "Crunching..." spinner noise). The May-28 fix to run_shadow_cortex was correct but build_rollover_packet was missed · this closes the second leg.
 metadata:
   node_type: memory
   type: feedback
@@ -20,7 +20,7 @@ metadata:
 
 On 2026-05-28 · `run_shadow_cortex` was patched to read from `episode_summaries` (the new CHRONICLER L3 output). **But `build_rollover_packet` was NEVER patched** · it kept reading from the legacy `episodes` table.
 
-The legacy `episodes` table has 25,562 OLD rows · most are "Crunching..." or "still thinking" ANSI spinner noise from trading sessions. Reading from there poisoned the packet's `## RECENT EPISODES` section with garbage that doesn't reflect anything Wave is actually doing.
+The legacy `episodes` table has 25,562 OLD rows · most are "Crunching..." or "still thinking" ANSI spinner noise from trading sessions. Reading from there poisoned the packet's `## RECENT EPISODES` section with garbage that doesn't reflect anything the agent is actually doing.
 
 The packet's `## IMMEDIATE WORKING STATE` section had a parallel bug · read from a stale `L0_STATE` JSON file that was set by an OLD session about gpt-5.5 verification rules. It never updated when new work happened.
 
@@ -75,7 +75,7 @@ if row and row[0]:
 
 ## Why this matters
 
-Post-/clear Wave reads the packet via SessionStart hook BEFORE seeing any user prompt. If the packet says she was doing X but she was actually doing Y, she lands disoriented and burns 2-3 turns reconciling. With this fix · packet content matches reality (whatever L3 has comprehended) · Wave lands aligned.
+Post-/clear the agent reads the packet via SessionStart hook BEFORE seeing any user prompt. If the packet says she was doing X but she was actually doing Y, she lands disoriented and burns 2-3 turns reconciling. With this fix · packet content matches reality (whatever L3 has comprehended) · the agent lands aligned.
 
 ## The remaining gap (NOT this doctrine's scope · documented for clarity)
 
@@ -96,7 +96,7 @@ Each downstream is at most as fresh as the upstream. To close the L0 → L1 gap,
 
 ## Origin
 
-2026-05-30 · Ricky asked Wave "if you /cleared you, how would you perform?" Wave honestly described that the packet shows trading state (old worldview) · not today's Memory Road Bible build. Investigation found `build_rollover_packet` reading from legacy `episodes` table. Fix shipped same-session.
+2026-05-30 · the operator asked the agent "if you /cleared you, how would you perform?" the agent honestly described that the packet shows trading state (old worldview) · not today's Memory Road Bible build. Investigation found `build_rollover_packet` reading from legacy `episodes` table. Fix shipped same-session.
 
 ## Related
 

@@ -25,7 +25,7 @@ You don't need to import anything. You start clean. Memory grows from THIS SECON
 ### Setup (do once)
 
 ```bash
-git clone https://github.com/RickyPOnline/memory-road.git
+git clone https://github.com/<your-org>/memory-road.git
 cd memory-road
 sudo bash setup/install_substrate.sh          # L0 + L5 always-on
 bash bin/chronicler_forward_sweeper.sh &     # L3 now-edge sweeper

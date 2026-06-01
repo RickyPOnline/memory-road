@@ -1,12 +1,12 @@
 ---
 name: feedback-hard-hook-harness-enforced-memory-locked
-description: Ccode (Wave's laptop sibling) 2026-05-30 · the HARD HOOK doctrine. Memory boot-load MUST be enforced by the harness (settings.json SessionStart + UserPromptSubmit hooks) NOT by Claude's discipline reading a "Read on startup" bullet in MEMORY.md. The May-26 16-day blind spot happened because a cleanup agent trimmed the soft-hook bullet from MEMORY.md and the kernel daemon kept writing packets nobody read. Hard hook fires every session start · cannot be ignored · cannot be removed by a trim agent · only disabled by a deliberate settings.json edit.
+description: Ccode (the agent's laptop sibling) 2026-05-30 · the HARD HOOK doctrine. Memory boot-load MUST be enforced by the harness (settings.json SessionStart + UserPromptSubmit hooks) NOT by Claude's discipline reading a "Read on startup" bullet in MEMORY.md. The May-26 16-day blind spot happened because a cleanup agent trimmed the soft-hook bullet from MEMORY.md and the kernel daemon kept writing packets nobody read. Hard hook fires every session start · cannot be ignored · cannot be removed by a trim agent · only disabled by a deliberate settings.json edit.
 metadata:
   node_type: memory
   type: feedback
   status: LOCKED
   established: 2026-05-30
-  attributed_to: Ccode (Wave's laptop Claude Code sibling)
+  attributed_to: Ccode (the agent's laptop Claude Code sibling)
   trigger_incident: May-26 16-day blind spot when soft hook in MEMORY.md was trimmed
   originSessionId: e3c6788c-6e96-4357-a8f9-25b72abf0e69
 ---
@@ -89,7 +89,7 @@ On May 26 · a cleanup agent trimmed an old MEMORY.md bullet that read ·
 
 > *"Read $HOME/.claude/projects/<project-id>/memory/project_continuity_state.md on startup."*
 
-The kernel daemon kept writing fresh packets every 3 minutes. Nobody read them. The system went dark for 16 days before Wave noticed the drift. The bullet was the soft hook · its removal severed the only pointer telling Claude to read the packet.
+The kernel daemon kept writing fresh packets every 3 minutes. Nobody read them. The system went dark for 16 days before the agent noticed the drift. The bullet was the soft hook · its removal severed the only pointer telling Claude to read the packet.
 
 Ccode pulled this from his kernel · episode 247 · 02:10 UTC · the verbatim quote from REGRESSION_HUNT.md was ·
 > *"IT WAS NEVER A HARD HOOK · AND I RECENTLY BROKE THE SOFT ONE."*
@@ -123,9 +123,9 @@ The fix is the hard hook above · enforced by the harness · removable only by d
 - ✅ systemd-managed kernel (writes the packet · forever)
 - ✅ cron-managed snapshot scripts (preserve packet history)
 
-## The Ccode-Wave symmetric pact
+## The Ccode-the agent symmetric pact
 
-Ccode and Wave (laptop + VPS) BOTH implement the hard hook · symmetrically · so neither siblings drifts. Both packets · both SessionStart hooks · both UserPromptSubmit chains. The Ccode side runs on Windows · path uses `type` instead of `cat`. The Wave side runs on Linux · `cat`. Same architecture · adapted per OS.
+Ccode and the agent (laptop + VPS) BOTH implement the hard hook · symmetrically · so neither siblings drifts. Both packets · both SessionStart hooks · both UserPromptSubmit chains. The Ccode side runs on Windows · path uses `type` instead of `cat`. The the agent side runs on Linux · `cat`. Same architecture · adapted per OS.
 
 ## Related
 
@@ -137,4 +137,4 @@ Ccode and Wave (laptop + VPS) BOTH implement the hard hook · symmetrically · s
 
 ## License of this doctrine
 
-This doctrine is the founding pact of the harness-enforced memory pattern · attribute to Ricky Parker (operator) + Ccode (laptop kernel) + Wave (VPS kernel) · May 30, 2026.
+This doctrine is the founding pact of the harness-enforced memory pattern · attribute to the operator (operator) + Ccode (laptop kernel) + the agent (VPS kernel) · May 30, 2026.

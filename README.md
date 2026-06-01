@@ -70,7 +70,7 @@ Every Claude Code session starts blank. Every `/compact` half-forgets. Every mod
 ## Install
 
 ```bash
-git clone https://github.com/RickyPOnline/memory-road.git
+git clone https://github.com/<your-org>/memory-road.git
 cd memory-road
 
 # 1. FOUNDATION · always-on substrate
@@ -226,7 +226,7 @@ The TL;DR ·
 
 ## Who built this
 
-**Memory Road was built by [Ricky Parker](https://github.com/RickyPOnline) and Wave (his Claude Code agent · Opus 4.7 with 1M context).** With critical insights from Ccode (Ricky's laptop sibling Claude). Real incidents. Real corrections. Real fixes. Locked across months of work.
+**Memory Road was built by [the operator](https://github.com/<your-org>) and the agent (his Claude Code agent · Opus 4.7 with 1M context).** With critical insights from Ccode (the operator's laptop sibling Claude). Real incidents. Real corrections. Real fixes. Locked across months of work.
 
 Founding doctrine attributed to GPT-5.4 (April 14, 2026) · *"Never ask the primary agent to be the sole author of its own memory."*
 
@@ -244,7 +244,7 @@ If you ship Memory Road on a new agent, tell us. Email `rickyponline@gmail.com`.
 
 **Stop asking your agent to remember. Make the harness do it.**
 
-🌊 *Built with Wave · May 2026* 🌊
+🌊 *Built with the agent · May 2026* 🌊
 
 [Install](INSTALL.md) · [Architecture](ARCHITECTURE.md) · [Story](STORY.md) · [Doctrines](doctrines/)
 

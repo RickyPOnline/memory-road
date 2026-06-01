@@ -8,7 +8,7 @@ The 11-layer memory system + how data flows + why each piece exists.
 
 ```
                      ┌──────────────────────────────┐
-                     │  CLAUDE CODE AGENT (Wave)    │
+                     │  CLAUDE CODE AGENT (the agent)    │
                      │  - emits + receives events   │
                      │  - reads cortex packet       │
                      │  - queries /wmr semantic     │
@@ -101,7 +101,7 @@ CREATE TABLE events (
 
 **Process ·** Runs INSIDE the kernel service. Same tick loop. No separate worker.
 
-**Job ·** Group consecutive events into "episodes" using a boundary detector. An episode is a coherent unit of work (e.g., "Wave debugged the auth flow", "Wave deployed Stripe webhook"). Boundaries are detected by topic shift · idle gap · user prompt arrival.
+**Job ·** Group consecutive events into "episodes" using a boundary detector. An episode is a coherent unit of work (e.g., "the agent debugged the auth flow", "the agent deployed Stripe webhook"). Boundaries are detected by topic shift · idle gap · user prompt arrival.
 
 **Schema ·**
 ```sql
@@ -138,7 +138,7 @@ CREATE TABLE episodes_v2 (
 
 **Why batch-5 ·** One Opus call summarizes 5 episodes via JSON-array output. 5x more summaries per call. Combined with blank-slate → ~15-25x throughput.
 
-**Why blank slate ·** Worker dir has empty `CLAUDE.md` stub. `claude` CLI subprocess loads THAT (zero bytes) instead of walking up to `$HOME/CLAUDE.md` (~25K tokens). Per the **blank-slate-per-agent doctrine** · workers don't need Wave's full operating manual to summarize ONE episode.
+**Why blank slate ·** Worker dir has empty `CLAUDE.md` stub. `claude` CLI subprocess loads THAT (zero bytes) instead of walking up to `$HOME/CLAUDE.md` (~25K tokens). Per the **blank-slate-per-agent doctrine** · workers don't need the agent's full operating manual to summarize ONE episode.
 
 **Two complementary worker types ·**
 
@@ -173,16 +173,16 @@ CREATE TABLE episode_summaries (
 
 **Packet shape ·**
 - `strategic_posture` · neutral / offensive / defensive
-- `worldview` · 1-2 sentences on what Wave is currently focused on
-- `mental_stance` · how Wave is approaching it
-- `active_beliefs` · 3-5 things Wave currently holds true
+- `worldview` · 1-2 sentences on what the agent is currently focused on
+- `mental_stance` · how the agent is approaching it
+- `active_beliefs` · 3-5 things the agent currently holds true
 - `current_goal` · the immediate objective
 - `last_decision` · most recent decision made
 - `next_action` · the next step
 - `open_loops` · unresolved threads
 - `recent_episodes` · 5 most recent episodes' summaries
 - `unresolved_threads` · cross-episode unfinished work
-- `resume_instruction` · how to pick up where Wave left off
+- `resume_instruction` · how to pick up where the agent left off
 
 **Why every 90 seconds ·** Fresh enough to capture mid-session state · not so fresh it burns tokens. The hook reads whatever the latest packet says · stale-by-design after 10 min triggers an alert.
 
@@ -204,7 +204,7 @@ CREATE TABLE episode_summaries (
 
 **Job ·** Adversarially validate each MINER candidate. Is the evidence strong? Concrete or hand-wavy? Conflicts with existing doctrines? Actually a doctrine or just a passing preference?
 
-**Output ·** Updates `candidate_doctrines.smith_verdict` to `STRONG | WEAK | DUPLICATE | REJECT`. Strong candidates with `ready_to_lock=true` get flagged for operator review · Wave LOCKs or kills.
+**Output ·** Updates `candidate_doctrines.smith_verdict` to `STRONG | WEAK | DUPLICATE | REJECT`. Strong candidates with `ready_to_lock=true` get flagged for operator review · the agent LOCKs or kills.
 
 ---
 
@@ -214,7 +214,7 @@ CREATE TABLE episode_summaries (
 
 **Job ·** Embed all recent episode summaries via `sentence-transformers/all-MiniLM-L6-v2`. Cluster via simple cosine-distance single-link (threshold 0.30). Write cluster assignments to `episode_clusters` table.
 
-**Why ·** Powers `/wmr query "topic"` semantic recall · the topic map · lets Wave find "everything related to X" instantly.
+**Why ·** Powers `/wmr query "topic"` semantic recall · the topic map · lets the agent find "everything related to X" instantly.
 
 **Cluster label generation ·** Optional second pass · for each big cluster, sample 10 summaries, ask Opus "what is this cluster about?" · write to `cluster_labels.label`.
 
@@ -248,7 +248,7 @@ CREATE TABLE episode_summaries (
 
 **Output ·** `huntsman_flags` table · dedupes by signature · flags stay open until manually closed.
 
-**Why this matters ·** Ricky Parker explicitly asked for this. Wave kept losing track of half-built work (the 57 frozen TODOs from April · the airdrop scouts · the half-built doctrines). HUNTSMAN surfaces them ALL · forever · until they're either done or explicitly killed.
+**Why this matters ·** the operator explicitly asked for this. the agent kept losing track of half-built work (the 57 frozen TODOs from April · the airdrop scouts · the half-built doctrines). HUNTSMAN surfaces them ALL · forever · until they're either done or explicitly killed.
 
 ---
 
@@ -279,13 +279,13 @@ CREATE TABLE episode_summaries (
    - Optionally runs `/wmr query "<prompt summary>"`
    - Injects all of this as `additional_context` to the prompt
    - Adds `<system-reminder>` · "Use Memory Road before answering"
-3. Wave answers · emits events to JSONL
+3. the agent answers · emits events to JSONL
 4. **L0 substrate** picks up events (next 5-sec tick)
 5. **L1 FURROW** chunks events into a new episode (or extends current)
 6. **L5 WATCHER** generates next packet (next 90-sec tick) · reflects the new state
 7. **Forward sweeper** (next 5-min poll) summarizes the new episode via batch-5 CHRONICLER
 8. **HUNTSMAN** (next hourly cron) re-sweeps for new unfinished items
-9. New cycle starts · Wave can now recall this turn instantly via `/wmr query`
+9. New cycle starts · the agent can now recall this turn instantly via `/wmr query`
 
 The agent's memory grows continuously · automatically · without the agent having to remember to write it down.
 
@@ -314,7 +314,7 @@ The agent's memory grows continuously · automatically · without the agent havi
 **Forced memory use ·**
 - UserPromptSubmit hook injects cortex packet + relevant anchors
 - Agent CANNOT skip memory · it's mechanically guaranteed
-- Previous Wave-versions accidentally forgot to use memory · this hook fixes that forever
+- Previous the agent-versions accidentally forgot to use memory · this hook fixes that forever
 
 **Pause/Resume control ·**
 - Workers stop at natural transitions

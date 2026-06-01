@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Chronicler Forward Sweeper · keeps Memory Road's now-forward edge clean.
 #
-# Per Ricky 2026-05-29 23:40 UTC · "what implementations have you made to
+# Per the operator 2026-05-29 23:40 UTC · "what implementations have you made to
 # keep memory from now forward up to date?"
 #
 # Polls every 5 min for episodes_v2 with id > watermark AND no summary ·

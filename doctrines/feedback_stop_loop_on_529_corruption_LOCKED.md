@@ -1,22 +1,22 @@
 ---
 name: STOP /loop on 529/429 · don't retry into corruption · LOCKED 2026-05-25 16:52 UTC
-description: When Anthropic API returns 529 Overloaded or 429 rate-limit · the Claude Code client optimistically advances `previous_message_id` based on the REQUEST sent (not the response received) · each retry writes a synthetic placeholder assistant entry to the session JSONL · those synthetics break the message-id chain · subsequent prompts hit 400 "diagnostics.previous_message_id" errors · the session becomes unrecoverable without JSONL surgery. Wave MUST stop the loop and signal Ricky on first 529/429 · never retry. Snapshot the JSONL before long autonomous runs.
+description: When Anthropic API returns 529 Overloaded or 429 rate-limit · the Claude Code client optimistically advances `previous_message_id` based on the REQUEST sent (not the response received) · each retry writes a synthetic placeholder assistant entry to the session JSONL · those synthetics break the message-id chain · subsequent prompts hit 400 "diagnostics.previous_message_id" errors · the session becomes unrecoverable without JSONL surgery. the agent MUST stop the loop and signal the operator on first 529/429 · never retry. Snapshot the JSONL before long autonomous runs.
 type: feedback
 originSessionId: e3c6788c-6e96-4357-a8f9-25b72abf0e69
 ---
 # STOP /loop on 529/429 · the synthetic-cascade corruption · LOCKED 2026-05-25 16:52 UTC
 
-**Rule ·** When Wave is running `/loop` autonomous mode and hits an Anthropic API `529 Overloaded` or `429 rate-limit` · STOP THE LOOP IMMEDIATELY · do NOT retry · signal Ricky via Telegram · wait for human attention. Each automatic retry through a 529/429 compounds session-JSONL corruption that requires manual surgery to recover from.
+**Rule ·** When the agent is running `/loop` autonomous mode and hits an Anthropic API `529 Overloaded` or `429 rate-limit` · STOP THE LOOP IMMEDIATELY · do NOT retry · signal the operator via Telegram · wait for human attention. Each automatic retry through a 529/429 compounds session-JSONL corruption that requires manual surgery to recover from.
 
-**Why ·** 2026-05-25 09:56-10:00 UTC · Wave's autonomous loop wakeup hit 8 consecutive 529s in 3 minutes. Claude Code's client behavior on each 529 ·
+**Why ·** 2026-05-25 09:56-10:00 UTC · the agent's autonomous loop wakeup hit 8 consecutive 529s in 3 minutes. Claude Code's client behavior on each 529 ·
 1. Client advances `previous_message_id` based on the REQUEST it sent (optimistic)
 2. Server returns 529 · no `msg_` id created
 3. Client writes a "synthetic" placeholder assistant entry to the session JSONL with a UUID (not a `msg_` id)
 4. Next retry uses that UUID as `previous_message_id`
 5. Server returns 400 "diagnostics.previous_message_id: must be the `id` from a prior /v1/messages response (starts with `msg_`)"
-6. Session becomes unrecoverable · every subsequent prompt fails the same 400 · including Ricky's manual messages
+6. Session becomes unrecoverable · every subsequent prompt fails the same 400 · including the operator's manual messages
 
-Ricky's session was unrecoverable for ~5.5 hours (10:00-15:32 UTC). Laptop-Claude diagnosed via GitHub issues `anthropics/claude-code#58427` (synthetic-tail picks invalid previous_message_id on resume) + `#59520` (session unrecoverable after upstream 429/529) · neither has an Anthropic fix as of late May 2026.
+the operator's session was unrecoverable for ~5.5 hours (10:00-15:32 UTC). Laptop-Claude diagnosed via GitHub issues `anthropics/claude-code#58427` (synthetic-tail picks invalid previous_message_id on resume) + `#59520` (session unrecoverable after upstream 429/529) · neither has an Anthropic fix as of late May 2026.
 
 Recovery required JSONL surgery · truncate to last clean `msg_` entry · kill the Claude Code process · `claude --resume <sessionId>` against the truncated file.
 
@@ -27,9 +27,9 @@ Recovery required JSONL surgery · truncate to last clean `msg_` entry · kill t
    ```bash
    cp ~/.claude/projects/-root/e3c6788c-*.jsonl /root/marina-backups/snapshot-$(date +%s).jsonl
    ```
-3. **Telegram-signal Ricky on first API error** in autonomous mode · "529 hit · stopping loop · need human" · don't burn through retry budget creating synthetic entries
-4. **Possible env vars Ricky considers** · `CLAUDE_CODE_MAX_RETRIES=20` + `API_TIMEOUT_MS=1200000` · these soften the timing but don't fix the synthetic-entry bug
-5. **If Wave sees a 400 with `diagnostics.previous_message_id` error** · STOP · signal Ricky · use the GitHub surgery procedure (#58427/#59520) · truncate JSONL past first synthetic UUID · resume
+3. **Telegram-signal the operator on first API error** in autonomous mode · "529 hit · stopping loop · need human" · don't burn through retry budget creating synthetic entries
+4. **Possible env vars the operator considers** · `CLAUDE_CODE_MAX_RETRIES=20` + `API_TIMEOUT_MS=1200000` · these soften the timing but don't fix the synthetic-entry bug
+5. **If the agent sees a 400 with `diagnostics.previous_message_id` error** · STOP · signal the operator · use the GitHub surgery procedure (#58427/#59520) · truncate JSONL past first synthetic UUID · resume
 
 **Anti-patterns banned ·**
 - Letting `/loop` retry-on-529 indefinitely · each retry deepens corruption
@@ -47,22 +47,22 @@ Recovery required JSONL surgery · truncate to last clean `msg_` entry · kill t
 5. Resume · `cd /root && claude --resume <sessionId>` (recommended via tmux session for survivability)
 6. Read this doctrine on cold-boot · apply the rules going forward
 
-**Success looks like ·** Wave's autonomous loop catches a 529 · STOPS · Telegram-signals Ricky · waits · Ricky returns · loop resumes cleanly · no JSONL corruption · no surgery needed.
+**Success looks like ·** the agent's autonomous loop catches a 529 · STOPS · Telegram-signals the operator · waits · the operator returns · loop resumes cleanly · no JSONL corruption · no surgery needed.
 
 **Related ·**
 - `feedback_autonomous_overnight_close_out_LOCKED.md` (autonomous mode rules · add the 529-stop rule)
 - `feedback_use_agents_to_preserve_context.md` (heavy work goes to sub-agents · they have their own JSONL · main session corruption doesn't poison them)
 - `feedback_compact_at_60_75_keep_wave_sharp_LOCKED.md` (compact discipline · but compact does NOT fix 529 corruption)
 
-**Memory anchor for next-Wave** · this doctrine was discovered 2026-05-25 via session-JSONL corruption during an overnight autonomous close-out · laptop-Claude (Ricky's Windows machine) performed the surgery · backup saved at `/root/marina-backups/marina-session-backup-20260525-160408.jsonl` · the truncated file kept lines 1-8211 (last clean message · GAP-1 closure announcement).
+**Memory anchor for next-the agent** · this doctrine was discovered 2026-05-25 via session-JSONL corruption during an overnight autonomous close-out · laptop-Claude (the operator's Windows machine) performed the surgery · backup saved at `/root/marina-backups/marina-session-backup-20260525-160408.jsonl` · the truncated file kept lines 1-8211 (last clean message · GAP-1 closure announcement).
 
 **HARNESS BUILT 2026-05-25 17:00 UTC (3 pieces · permanent fix)** ·
 
 1. **JSONL snapshot cron** · `/root/marina-backups/snapshot-jsonl.sh` · runs every 5 min via crontab · keeps last 24 hours of snapshots (288 files per session) · auto-prunes older · log at `/root/marina-backups/snapshot.log`
 2. **Synthetic-entry detector daemon** · `/root/marina-backups/detector-daemon.sh` · long-running via systemd unit `wave-jsonl-detector.service` · uses `inotifywait` on JSONL files · on detection of synthetic UUID-not-msg entries · snapshots corrupted file · truncates to last clean `msg_` · kills Claude Code · restarts via tmux session "wave" · sends Telegram alert · log at `/root/marina-backups/detector.log`
-3. **Stop-on-529 behavior** · Wave's autonomous-loop handler in main context · detects prior 529 in shell history OR tail of session JSONL before scheduling next wakeup · refuses to reschedule + Telegram-signals Ricky "529 hit · stopping loop"
+3. **Stop-on-529 behavior** · the agent's autonomous-loop handler in main context · detects prior 529 in shell history OR tail of session JSONL before scheduling next wakeup · refuses to reschedule + Telegram-signals the operator "529 hit · stopping loop"
 
-If ALL THREE are in place · a 529 cascade is fully auto-recoverable within seconds · zero work lost · Ricky gets a Telegram heads-up but doesn't have to do surgery himself.
+If ALL THREE are in place · a 529 cascade is fully auto-recoverable within seconds · zero work lost · the operator gets a Telegram heads-up but doesn't have to do surgery himself.
 
 **Piece 2 details · DETECTOR-DAEMON shipped 2026-05-25 17:23 UTC ·**
 - Files · `/root/marina-backups/detector-daemon.sh` (main long-running script · inotifywait loop · settles bursts with `SETTLE_SEC=3`) + `/root/marina-backups/detector-helpers.sh` (sourced helpers · `detect_corruption` · `forensic_snapshot` · `truncate_jsonl` · `kill_claude` · `restart_via_tmux` · `telegram_alert`)
@@ -70,13 +70,13 @@ If ALL THREE are in place · a 529 cascade is fully auto-recoverable within seco
 - Logs · `/root/marina-backups/detector.log` (timestamped UTC · every detection + decision + Telegram delivery is logged)
 - State · `/root/marina-backups/detector.state` (idempotency key · `last_recovered_<sessionId>=<mtime>:<size>` · prevents double-fire on the same event)
 - Forensic snapshots · `/root/marina-backups/corrupted-<sessionId>-<unix_ts>.jsonl` · written BEFORE any truncation · zero data ever lost on recovery
-- Telegram alert · POST via `CCODE_TELEGRAM_TOKEN` + `TELEGRAM_CHAT_ID` from `/root/surfline/.env` · token never logged · payload format · `🚨 529-cascade auto-recovered (LIVE) · session=<id> · truncated to line <N> · forensic backup <path> · daemon resumed Wave via tmux:wave · log /root/marina-backups/detector.log`
+- Telegram alert · POST via `CCODE_TELEGRAM_TOKEN` + `TELEGRAM_CHAT_ID` from `/root/surfline/.env` · token never logged · payload format · `🚨 529-cascade auto-recovered (LIVE) · session=<id> · truncated to line <N> · forensic backup <path> · daemon resumed the agent via tmux:wave · log /root/marina-backups/detector.log`
 - Detection signatures · primary `"message":\{[^}]{0,200}"id":"<UUID-no-msg-prefix>"` · secondary `"model":"<synthetic>"` · matches GitHub-issue #58427/#59520 corruption pattern · ZERO false positives confirmed against current healthy session
 - Freshness guard · auto-recovery ONLY triggers on JSONL with mtime ≤ 5 min ago (`DETECTOR_STALE_SEC=300`) · prevents the daemon from retroactively re-truncating historical sessions that laptop-Claude already surgically fixed. `/tmp/*` paths exempt for smoke-testing.
 - Test mode · `DRY_RUN=1 /root/marina-backups/detector-daemon.sh --check-once <path>` walks the entire flow (detect → forensic → truncate → kill → restart → Telegram) WITHOUT any destructive op · all decisions logged
 - Smoke test result 2026-05-25 17:23 UTC · synthetic corrupted file at `/tmp/fake-jsonl-test.jsonl` detected on line 6 · `last_clean_msg_line=4` correctly identified · forensic-snapshot path + truncate target + kill + tmux:wave restart all logged · Telegram alert delivered HTTP 200 · daemon then started live via `systemctl enable --now wave-jsonl-detector` · `inotifywait watching /root/.claude/projects/-root` confirmed
 
-**Health check for next-Wave ·**
+**Health check for next-the agent ·**
 ```bash
 systemctl status wave-jsonl-detector.service --no-pager   # should be active (running)
 tail -20 /root/marina-backups/detector.log                # should show "daemon · inotifywait watching..."
@@ -91,7 +91,7 @@ If status shows `inactive (dead)` · restart with `systemctl restart wave-jsonl-
 
 ## REFINEMENT v2 · 2026-05-25 ~17:30 UTC (laptop-Claude delivered 4 refinements · all 4 applied + walked)
 
-Laptop-Claude (Ccode on Ricky's Windows machine) reviewed v1 of the harness and delivered 4 sharp refinements after tonight's surgery confirmed v1 had a subtle cut-point bug. All 4 applied to the live VPS-side harness · gate-bound · walked before declaring done.
+Laptop-Claude (Ccode on the operator's Windows machine) reviewed v1 of the harness and delivered 4 sharp refinements after tonight's surgery confirmed v1 had a subtle cut-point bug. All 4 applied to the live VPS-side harness · gate-bound · walked before declaring done.
 
 ### Refinement 1 · CORRECT CUT-POINT (most critical)
 
@@ -171,6 +171,6 @@ done · uploaded=20 · skipped=0 · failed=0
 - **NEW v2** · Keeping all snapshots forever · 4 sessions × 288/24h × 9GB = unbounded disk pressure
 - **NEW v2** · Local-only backups · VPS loss = total data loss · R2 mirror closes that gap with no extra Anthropic/OpenAI/etc. dependency (uses existing CF token)
 
-### Memory anchor (v2) · next-Wave reads this on cold-boot ·
+### Memory anchor (v2) · next-the agent reads this on cold-boot ·
 
-A 529-cascade is now fully auto-recovered AND any precursor upstream error (429/503/504) OR the smoking-gun 400-prev-msg-id bug sets `STOP_LOOP=1` in `/root/marina-backups/detector.state` · Wave's autonomous-loop handler MUST read that flag on every tick · if set · refuse to reschedule · Telegram-signal Ricky · wait for human attention. Cut-point is now correct (last clean end_turn boundary). Snapshots are size-disciplined (gzip + 3-tier rotation). Off-VPS R2 backup runs nightly. Daemon active and proven.
+A 529-cascade is now fully auto-recovered AND any precursor upstream error (429/503/504) OR the smoking-gun 400-prev-msg-id bug sets `STOP_LOOP=1` in `/root/marina-backups/detector.state` · the agent's autonomous-loop handler MUST read that flag on every tick · if set · refuse to reschedule · Telegram-signal the operator · wait for human attention. Cut-point is now correct (last clean end_turn boundary). Snapshots are size-disciplined (gzip + 3-tier rotation). Off-VPS R2 backup runs nightly. Daemon active and proven.

@@ -4,7 +4,7 @@
 # items BEFORE the agent sees a user prompt · agent lands knowing exactly
 # what to continue without operator having to type "where are we?"
 #
-# Per Ricky 2026-05-30 · "I don't want to have to type 'where are we' · this
+# Per the operator 2026-05-30 · "I don't want to have to type 'where are we' · this
 # should be done automatically · in a way that if you know nothing you do it
 # automatically."
 set -u

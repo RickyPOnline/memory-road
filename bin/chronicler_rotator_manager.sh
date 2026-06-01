@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Chronicler Rotator Manager · per Ricky's 4-staggered-rotate strategy.
+# Chronicler Rotator Manager · per the operator's 4-staggered-rotate strategy.
 #
 # - 4 slots (A B C D)
 # - Each slot runs ONE worker at a time

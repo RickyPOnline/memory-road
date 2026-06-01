@@ -5,7 +5,7 @@
 # to USE Memory Road before answering. Stops the drift pattern where Waves
 # accidentally forgot they had memory.
 #
-# Per `feedback_memory_road_first_LOCKED.md` and Ricky's 2026-05-30 directive ·
+# Per `feedback_memory_road_first_LOCKED.md` and the operator's 2026-05-30 directive ·
 # "there is a way for the memory to be force used at all times."
 set -u
 

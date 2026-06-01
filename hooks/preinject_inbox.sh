@@ -1,8 +1,8 @@
 #!/bin/bash
 # preinject_inbox.sh · PreToolUse hook · drains any new Telegram inbox lines
-# BEFORE each tool call · so mid-agent messages from Ricky reach Wave's context
+# BEFORE each tool call · so mid-agent messages from the operator reach Wave's context
 # without needing the Monitor tool armed. Shares cursor with inject_inbox.sh
-# so no double-delivery. Locked 2026-05-31 per Ricky "hard hook it when you
+# so no double-delivery. Locked 2026-05-31 per the operator "hard hook it when you
 # start up, duh · Telegram works always."
 INBOX=/root/wc/runtime/ccode_inbox.txt
 STATE=/root/wc/runtime/ccode_inbox.state

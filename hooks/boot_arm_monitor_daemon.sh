@@ -2,7 +2,7 @@
 # boot_arm_monitor_daemon.sh · SessionStart hook · auto-arms a background
 # tail watcher on the Telegram inbox so push works WITHOUT the model needing
 # to invoke the Monitor tool. Belt+suspenders with inject_inbox.sh (UserPromptSubmit)
-# and preinject_inbox.sh (PreToolUse). Locked 2026-05-31 per Ricky:
+# and preinject_inbox.sh (PreToolUse). Locked 2026-05-31 per the operator:
 # "hard hook it when you start up, duh · I shouldn't have to tell you every time."
 set -u
 INBOX=/root/wc/runtime/ccode_inbox.txt

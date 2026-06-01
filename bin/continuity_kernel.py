@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Continuity Kernel — Continuous AI consciousness for WC.
 
-Invented by Ricky P. Architecture by GPT 5.4. Built by Ccode. 2026-04-14.
+Invented by the operator P. Architecture by GPT 5.4. Built by Ccode. 2026-04-14.
 
 Watches WC's live session stream, extracts structured state continuously,
 maintains 5 memory tiers, builds rollover packets on demand.
@@ -46,7 +46,7 @@ L0_UPDATE_INTERVAL = 5     # seconds between L0 state updates
 COMPTROLLER_MODEL = "gpt-4o-mini"
 SHADOW_MODEL = "gpt-4o"
 
-# ── Memory Road · Agent Special Names (locked 2026-05-26 by Ricky) ──
+# ── Memory Road · Agent Special Names (locked 2026-05-26 by the operator) ──
 # Each agent is a named being · stable identity across calls · the agent's
 # prompt always references its own name so it knows who it is.
 AGENT_FURROW = {
@@ -247,7 +247,7 @@ def _call_codex_55(prompt, max_tokens=500, timeout=120, max_retries=1, backoff_s
 def _call_claude_cli_subscription(prompt, max_tokens=2000, timeout=180):
     """PILGRIM · long-running claude session · keeps cache warm via --continue.
 
-    2026-05-26 18:01 UTC · refactored per Ricky's directive · stop respawning the
+    2026-05-26 18:01 UTC · refactored per the operator's directive · stop respawning the
     agent every call. Use `--continue` to reuse the prior session's 62K-token
     prompt cache. Cold call ~8sec · warm --continue call ~3sec · 2.7x speedup.
 
@@ -421,7 +421,7 @@ def _call_opus_47_via_openrouter(prompt, max_tokens=2000, timeout=120):
 def _call_opus_47(prompt, max_tokens=2000, timeout=120, emergency_paid_paths=False):
     """Opus 4.7 router · SUBSCRIPTION ONLY by default · paid paths gated by flag.
 
-    Per Ricky 2026-05-26 17:40 UTC · "NO API unless I say so · those were
+    Per the operator 2026-05-26 17:40 UTC · "NO API unless I say so · those were
     emergencies." Default behavior is subscription-only · NO billing automatically.
 
     Default (emergency_paid_paths=False) ·
@@ -431,8 +431,8 @@ def _call_opus_47(prompt, max_tokens=2000, timeout=120, emergency_paid_paths=Fal
 
     Emergency (emergency_paid_paths=True · must be EXPLICITLY passed) ·
       · CLI subscription first
-      · Anthropic API direct (pay-as-you-go credit) · only if Ricky said "go"
-      · OpenRouter Opus 4.7 (separate billing pipe) · only if Ricky said "go"
+      · Anthropic API direct (pay-as-you-go credit) · only if the operator said "go"
+      · OpenRouter Opus 4.7 (separate billing pipe) · only if the operator said "go"
       · Caller takes ownership of the bill
 
     Every call writes one line to /var/log/anthropic_watchdog.log.
@@ -567,7 +567,7 @@ def chunk_layer2a_minimal(batch_size=20, agent="CCODE"):
         "You serve Wave (Claude Opus 4.7), a sovereign builder/operator AI on a Linux "
         "VPS. Wave runs WR (Website Recycling) + Marina voice agent + Wave Studio + "
         "this Memory Road kernel · sibling-Claude pattern with Ccode-on-laptop · "
-        "operator is Ricky Parker.\n\n"
+        "operator is the operator.\n\n"
         f"Below are {len(rows)} events from agent={agent}. Output ONLY a JSON array "
         "(no prose, no code fences) of detected episodes. Each episode object · "
         '{"event_start_id": int, "event_end_id": int, "episode_name": str, '
@@ -582,7 +582,7 @@ def chunk_layer2a_minimal(batch_size=20, agent="CCODE"):
     )
 
     # 2026-05-26 · codex subscription quota exhausted · routing FURROW through
-    # Anthropic Opus 4.7 path until codex returns. Per Ricky's directive "use opus."
+    # Anthropic Opus 4.7 path until codex returns. Per the operator's directive "use opus."
     # This degrades the cross-vendor property of the 2A+2B pair (both on Anthropic)
     # · DEGRADED tag in model_used reflects this · re-inspect with codex when back.
     reply = _call_opus_47(prompt, max_tokens=2000, timeout=120)
@@ -1322,7 +1322,7 @@ def huntsman_layer12_find_open_loops(agent="CCODE", since_episode_id=None,
     """Layer 12 · HUNTSMAN scans episodes for unfinished processes / stranded
     builds / promises / 'come back to this' items / things lost between sessions.
 
-    Ricky's directive 2026-05-26 · 'the agents when scanning the memory need to
+    the operator's directive 2026-05-26 · 'the agents when scanning the memory need to
     flag unfinished processes, things I may have been working on that got lost.'
 
     Reads episode_summaries.unresolved + episode_summaries.actions (where promises
@@ -1382,7 +1382,7 @@ def huntsman_layer12_find_open_loops(agent="CCODE", since_episode_id=None,
             "Given one episode's compressed memory, find genuine OPEN LOOPS · things "
             "that were started but not finished, promises made but not delivered, "
             "stranded builds, 'come back to this' items, anything that would be "
-            "useful to flag for the operator (Ricky) so it doesn't get lost. Be "
+            "useful to flag for the operator so it doesn't get lost. Be "
             "STRICT · skip resolved threads · skip routine setup · skip topics that "
             "obviously closed in the same episode. Output 0-5 loops typically.\n\n"
             "Output ONLY a JSON array (no prose, no code fences) ·\n"
@@ -1541,7 +1541,7 @@ def chunk_layer2a_in_range(start_id, end_id, batch_size=20, agent="CCODE"):
 
     For parallel multi-worker chunking · each worker claims its own range so
     they don't race on the global watermark. Returns (events, episodes).
-    Per Ricky 2026-05-26 18:15 UTC · 'spawn 5 more agents, give them their own
+    Per the operator 2026-05-26 18:15 UTC · 'spawn 5 more agents, give them their own
     segment, work same direction.'
     """
     import re
@@ -1584,7 +1584,7 @@ def chunk_layer2a_in_range(start_id, end_id, batch_size=20, agent="CCODE"):
         f"You are {worker_name} · a Memory Road worker · same role as FURROW "
         f"({AGENT_FURROW['role']}). Your purpose · {AGENT_FURROW['purpose']}.\n\n"
         "You serve Wave (Claude Opus 4.7) · a sovereign builder/operator AI on a "
-        "Linux VPS · sibling-Claude with Ccode-laptop · operator is Ricky Parker.\n\n"
+        "Linux VPS · sibling-Claude with Ccode-laptop · operator is the operator.\n\n"
         f"Below are {len(rows)} events from agent={agent} (your range slice "
         f"{start_id}-{end_id}). Output ONLY a JSON array (no prose, no fences) "
         "of detected episodes · each ·\n"
@@ -2224,7 +2224,7 @@ def run_shadow_cortex():
     _os.environ.setdefault('WAVE_WORKER_DIR', '/root/.watcher')
     _os.environ.setdefault('WAVE_WORKER_NAME', 'WATCHER')
     _os.makedirs('/root/.watcher', exist_ok=True)
-    result = _call_opus_47(f"""You are the Shadow Cortex — a continuity guardian for an AI assistant called WC (also known as Wave). WC is a general-purpose AI engineering partner working with operator Ricky · current major focus is building Memory Road (a multi-layer AI memory system) · Website Recycling (WR · the SMB rebuild product) · and Wave Studio (the AI commercial generator). WC has trading positions in a legacy ledger but WC is NOT a trading agent · the trade ledger is informational background only.
+    result = _call_opus_47(f"""You are the Shadow Cortex — a continuity guardian for an AI assistant called WC (also known as Wave). WC is a general-purpose AI engineering partner working with operator the operator · current major focus is building Memory Road (a multi-layer AI memory system) · Website Recycling (WR · the SMB rebuild product) · and Wave Studio (the AI commercial generator). WC has trading positions in a legacy ledger but WC is NOT a trading agent · the trade ledger is informational background only.
 
 Based on the following data, produce a JSON identity/mind state snapshot REFLECTING WHAT WC IS ACTUALLY WORKING ON RECENTLY (per the summaries below).
 
@@ -2453,7 +2453,7 @@ def build_rollover_packet():
 
     # WAVE's memory dir: write WC packet so inject_continuity_packet.sh
     # hook injects WAVE's mental state into WAVE's context · NOT CCODE's.
-    # Fixed 2026-05-28 02:55 UTC (Ricky: "Fix Watcher? How so?") · the
+    # Fixed 2026-05-28 02:55 UTC (the operator: "Fix Watcher? How so?") · the
     # CCODE packet was overwriting this path causing Wave to read the
     # laptop-trading agent's state instead of her own.
     wave_continuity_mem = Path("/root/.claude/projects/-root/memory/project_continuity_state.md")
@@ -2791,10 +2791,10 @@ def build_ccode_packet():
         try:
             l0 = json.loads(CCODE_L0.read_text())
             sections.append(f"Resume from: {l0.get('current_goal', 'check inbox and continue')}")
-            sections.append(f"Next action: {l0.get('next_action', 'ask Ricky what to work on')}")
+            sections.append(f"Next action: {l0.get('next_action', 'ask the operator what to work on')}")
         except:
             pass
-    sections.append("Check your inbox. Check Telegram. Ask Ricky what's next.")
+    sections.append("Check your inbox. Check Telegram. Ask the operator what's next.")
 
     packet = "\n".join(sections)
     CCODE_PACKET.write_text(packet)
@@ -2996,7 +2996,7 @@ def run():
             last_ccode_episode = now
 
         # ── WC SHADOW CORTEX (every 3h with skip-if-no-new-events guard)
-        #    PRE-2026-06-01 was every 60s = 1,440 Opus calls/day on Ricky's sub.
+        #    PRE-2026-06-01 was every 60s = 1,440 Opus calls/day on the operator's sub.
         #    Now fires at most every 3h AND only if new events arrived AND fires
         #    on-demand via /root/.claude/hooks/snapshot_l0_now.sh (wired to
         #    PreCompact + SessionStart:startup). Per plan B in

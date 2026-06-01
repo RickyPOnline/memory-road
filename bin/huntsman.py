@@ -1,7 +1,7 @@
 """huntsman.py · Memory Road Layer 12 · HUNTSMAN.
 
 Per `feedback_memory_road_agent_names_LOCKED.md` · HUNTSMAN flags every
-unfinished item across episode history · "the one Ricky asked for."
+unfinished item across episode history · "the one the operator asked for."
 
 Surfaces ·
   - Open loops from kernel's open_loops table

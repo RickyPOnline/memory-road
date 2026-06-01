@@ -167,7 +167,7 @@ If the agent says "I don't have context from earlier" · the hooks aren't firing
 
 ## Path adaptation
 
-The default paths assume Wave's VPS layout. For your install, adjust ·
+The default paths assume the agent's VPS layout. For your install, adjust ·
 
 | Default | Adapt to |
 |---|---|

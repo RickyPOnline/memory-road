@@ -3,7 +3,7 @@
 # Fires once at session boot · injects an IMPOSSIBLE-TO-IGNORE alert that
 # tells Claude to arm the Telegram Monitor as the very first action.
 #
-# Per Ricky 2026-05-30 · "the MONITOR for telegram always needs to be on,
+# Per the operator 2026-05-30 · "the MONITOR for telegram always needs to be on,
 # its always reset and missing/off when you come back or clear or compact."
 #
 # Pairs with verify_monitor_armed.sh (UserPromptSubmit) · belt + suspenders.

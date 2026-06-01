@@ -3,7 +3,7 @@
 # Calls chunk_layer2a_minimal every cycle so episodes_v2 STAYS CAUGHT UP to L0.
 # This is what should have been doing the whole time so the current memory
 # (right-edge of the visual) is always fresh.
-# Per Ricky 2026-05-30 20:42 UTC · "current memory should always be up to date."
+# Per the operator 2026-05-30 20:42 UTC · "current memory should always be up to date."
 set -u
 DIR=/root/.furrow_continuous
 mkdir -p "$DIR"

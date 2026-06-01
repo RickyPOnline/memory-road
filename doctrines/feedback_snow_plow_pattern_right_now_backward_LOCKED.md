@@ -1,6 +1,6 @@
 ---
 name: feedback-snow-plow-pattern-right-now-backward-locked
-description: Ricky 2026-05-29 23:30 UTC · the SNOW PLOW PATTERN · multiple workers stacking parallel LAYERS (L3 → L4 → L6 → L7 → L12) each clearing recent-first from RIGHT NOW backwards. "couple or 3 workers stacking layers like snow plows pushing snow off a 5 lane highway." Sharp recall RIGHT NOW · backfill trickles in naturally · resumable at any point.
+description: the operator 2026-05-29 23:30 UTC · the SNOW PLOW PATTERN · multiple workers stacking parallel LAYERS (L3 → L4 → L6 → L7 → L12) each clearing recent-first from RIGHT NOW backwards. "couple or 3 workers stacking layers like snow plows pushing snow off a 5 lane highway." Sharp recall RIGHT NOW · backfill trickles in naturally · resumable at any point.
 metadata:
   node_type: memory
   type: feedback
@@ -20,11 +20,11 @@ A 5-lane highway buried in snow ·
 - Plows start at THIS SECOND and push BACKWARDS in time
 - Wherever the plow is, the highway behind it is CLEAR
 
-The product · Wave's recall gets sharper EVERY MINUTE · starting from the freshest memories Ricky cares about most.
+The product · the agent's recall gets sharper EVERY MINUTE · starting from the freshest memories the operator cares about most.
 
 ## Why right-now-backwards
 
-1. **Recent memories matter most** · today's Ricky directives · this session's doctrines · the latest WR build state · all RECENT
+1. **Recent memories matter most** · today's the operator directives · this session's doctrines · the latest WR build state · all RECENT
 2. **Old memories are reference** · April trading work · Apr-20 frozen TODO · months-ago context · valuable but not urgent
 3. **Resumable** · if cycle dies mid-plow, the plowed-clear part is BEHIND us · we just resume where we stopped · no rework
 4. **Trickle is OK** · backfill happens naturally over weeks · no rush

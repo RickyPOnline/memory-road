@@ -17,7 +17,7 @@ When a worker `cd`s into a per-worker dir (e.g., `$HOME/.memory_road/workers/koa
 
 That 25K tokens is loaded into EVERY worker call. For a 6,000-summary catch-up · that's **150 MILLION tokens of pure waste**.
 
-The worker doesn't need Wave's full operating doctrine · it just needs the CHRONICLER persona + the episode + output instructions. The fat $HOME/CLAUDE.md adds nothing to summary quality.
+The worker doesn't need the agent's full operating doctrine · it just needs the CHRONICLER persona + the episode + output instructions. The fat $HOME/CLAUDE.md adds nothing to summary quality.
 
 ## The fix · one line per worker dir
 
@@ -61,12 +61,12 @@ If warning appears · CLAUDE.md is being inherited · STRIP IT.
 
 ## Where this does NOT apply
 
-- The MAIN Wave session (Wave wants the full CLAUDE.md context · it's the operating manual)
-- `claude` CLI invoked from `/root` directly (Wave's working dir · needs the manual)
+- The MAIN the agent session (the agent wants the full CLAUDE.md context · it's the operating manual)
+- `claude` CLI invoked from `/root` directly (the agent's working dir · needs the manual)
 
 ## Origin incident
 
-2026-05-29 23:20-23:30 UTC · Ricky asked "did old Wave have a special technique to make this faster?" Wave investigated and found the per-call token loadout was ~37K with 25K being $HOME/CLAUDE.md alone · stripping it = instant 3-4x throughput. Old Wave likely meant this technique when she alluded to "pre-injected context to save tokens."
+2026-05-29 23:20-23:30 UTC · the operator asked "did old the agent have a special technique to make this faster?" the agent investigated and found the per-call token loadout was ~37K with 25K being $HOME/CLAUDE.md alone · stripping it = instant 3-4x throughput. Old the agent likely meant this technique when she alluded to "pre-injected context to save tokens."
 
 ## Related
 

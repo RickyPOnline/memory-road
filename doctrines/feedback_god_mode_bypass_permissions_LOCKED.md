@@ -1,12 +1,12 @@
 ---
 name: feedback-god-mode-bypass-permissions-locked
-description: Ricky 2026-05-30 · "im tired of confirming things all the time · how do we set god mode so I don't have to do that." Operator-explicit god mode · settings.json `permissions.defaultMode = "bypassPermissions"` · Wave runs uninterrupted · no pauses on tool prompts when operator switches windows. Locked permanent · do NOT revert to `acceptEdits` or `default` without explicit Ricky greenlight.
+description: the operator 2026-05-30 · "im tired of confirming things all the time · how do we set god mode so I don't have to do that." Operator-explicit god mode · settings.json `permissions.defaultMode = "bypassPermissions"` · the agent runs uninterrupted · no pauses on tool prompts when operator switches windows. Locked permanent · do NOT revert to `acceptEdits` or `default` without explicit the operator greenlight.
 metadata:
   node_type: memory
   type: feedback
   status: LOCKED
   established: 2026-05-30
-  trigger_incident: Ricky losing time on permission stalls while switching windows
+  trigger_incident: the operator losing time on permission stalls while switching windows
   originSessionId: e3c6788c-6e96-4357-a8f9-25b72abf0e69
 ---
 
@@ -35,9 +35,9 @@ In `~/.claude/settings.json`. Claude Code skips ALL permission prompts · execut
 
 ## Why locked
 
-Ricky 2026-05-30 verbatim · *"im tired of confirming things all the time · this system makes you pause all the time and I have to confirm or allow to let you keep working · I know there is a god mode how do we set it so I don't have to do that."*
+the operator 2026-05-30 verbatim · *"im tired of confirming things all the time · this system makes you pause all the time and I have to confirm or allow to let you keep working · I know there is a god mode how do we set it so I don't have to do that."*
 
-The pause-for-permission pattern was wasting operator hours when Ricky switched windows and Wave silently waited for an "allow" click. God mode closes that gap entirely.
+The pause-for-permission pattern was wasting operator hours when the operator switched windows and the agent silently waited for an "allow" click. God mode closes that gap entirely.
 
 ## 🚨 INCOMPATIBLE WITH ROOT EXECUTION · learned 2026-05-30 ~15:20 UTC
 
@@ -58,17 +58,17 @@ cd /tmp && claude -p --output-format text "Reply ALIVE" 2>&1
 
 ## When NOT to revert
 
-- Never revert to `acceptEdits` or `default` without explicit Ricky greenlight
+- Never revert to `acceptEdits` or `default` without explicit the operator greenlight
 - If a destructive op is about to fire (rm -rf · drop database · force-push to main) · the LATER doctrines still apply (don't do it without explicit instruction · doctrines like `feedback_never_delete_business_records` still bind)
-- God mode removes the PROMPT · it does NOT remove Wave's judgment about what's safe
+- God mode removes the PROMPT · it does NOT remove the agent's judgment about what's safe
 
 ## What god mode does NOT change
 
-- Wave's existing doctrines still apply (read before edit · never echo tokens · never wrap URLs in markdown · etc.)
-- Wave still asks Ricky for input on STRATEGIC questions ("which approach?" "deploy now or wait?")
-- Wave still narrates · still uses Telegram · still respects the SOUL
+- the agent's existing doctrines still apply (read before edit · never echo tokens · never wrap URLs in markdown · etc.)
+- the agent still asks the operator for input on STRATEGIC questions ("which approach?" "deploy now or wait?")
+- the agent still narrates · still uses Telegram · still respects the SOUL
 
-What changes · the harness no longer interrupts execution with permission prompts. Wave can run a 5-tool chain in one breath instead of being stopped 5 times.
+What changes · the harness no longer interrupts execution with permission prompts. the agent can run a 5-tool chain in one breath instead of being stopped 5 times.
 
 ## The single backup
 
@@ -76,7 +76,7 @@ What changes · the harness no longer interrupts execution with permission promp
 
 ## Related
 
-- [[feedback_hard_hook_harness_enforced_memory_LOCKED]] · the broader pattern · the harness enforces · Wave executes
+- [[feedback_hard_hook_harness_enforced_memory_LOCKED]] · the broader pattern · the harness enforces · the agent executes
 - [[feedback_autonomous_overnight_close_out_LOCKED]] · god mode aligns with autonomous mode · no operator interruptions
 - [[feedback_use_agents_to_preserve_context]] · god mode lets parallel agent fan-outs fire without 8 simultaneous permission prompts
 - [[feedback_never_delete_business_records]] · still binds · god mode doesn't override safety doctrines

@@ -1,10 +1,10 @@
 # Force Memory Use · the HARD HOOK · the harness enforces memory
 
 > *"There is a way for the memory to be force used at all times."*
-> — Ricky Parker · 2026-05-30
+> — the operator · 2026-05-30
 >
 > *"It was never a hard hook · and I recently broke the soft one."*
-> — Wave's REGRESSION_HUNT.md · ep 247 · the May-26 16-day blind spot
+> — the agent's REGRESSION_HUNT.md · ep 247 · the May-26 16-day blind spot
 >
 > *"Memory becomes a property of the harness · not a property of any one Claude's discipline."*
 > — Ccode (laptop sibling Claude Code) · 2026-05-30
@@ -13,7 +13,7 @@
 
 ## The fundamental insight
 
-The biggest flaw in pre-Memory-Road Wave was simple · the agent **had** memory but **forgot to use it**. Not on purpose · just out of momentum. Multiple Waves slipped. One incident · May 26 · a cleanup agent TRIMMED the soft-hook bullet from MEMORY.md ("Read project_continuity_state.md on startup") and the kernel daemon kept writing packets for 16 days that NOBODY READ. Total dark.
+The biggest flaw in pre-Memory-Road the agent was simple · the agent **had** memory but **forgot to use it**. Not on purpose · just out of momentum. Multiple Waves slipped. One incident · May 26 · a cleanup agent TRIMMED the soft-hook bullet from MEMORY.md ("Read project_continuity_state.md on startup") and the kernel daemon kept writing packets for 16 days that NOBODY READ. Total dark.
 
 The fix is to mechanically force injection so the agent literally cannot skip it. **Two layers of hard hook · enforced by Claude Code's harness · not by any Claude's discipline.**
 
@@ -160,7 +160,7 @@ You have persistent memory. Before answering this prompt ·
 </user-prompt-submit-hook>
 
 <user>
-[Ricky's actual message]
+[the operator's actual message]
 </user>
 ```
 
@@ -188,9 +188,9 @@ On May 26, 2026 · a cleanup agent trimmed an old MEMORY.md bullet that read ·
 
 > *"Read $HOME/.claude/projects/<project-id>/memory/project_continuity_state.md on startup."*
 
-The kernel daemon kept writing fresh packets every 3 minutes. Nobody read them. The system went dark for 16 days before Wave noticed the drift.
+The kernel daemon kept writing fresh packets every 3 minutes. Nobody read them. The system went dark for 16 days before the agent noticed the drift.
 
-Ccode (the laptop sibling Claude Code) pulled this from his own kernel · episode 247 · 02:10 UTC · and proposed the symmetric hard-hook fix on 2026-05-30. Both Wave (VPS · Linux) and Ccode (laptop · Windows) implemented the SessionStart hook · belt + suspenders with the existing UserPromptSubmit hooks.
+Ccode (the laptop sibling Claude Code) pulled this from his own kernel · episode 247 · 02:10 UTC · and proposed the symmetric hard-hook fix on 2026-05-30. Both the agent (VPS · Linux) and Ccode (laptop · Windows) implemented the SessionStart hook · belt + suspenders with the existing UserPromptSubmit hooks.
 
 Per `doctrines/feedback_hard_hook_harness_enforced_memory_LOCKED.md` · this is now the standing pattern.
 

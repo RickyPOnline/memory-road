@@ -1,10 +1,10 @@
-# Memory Road · Wave's Broader Ecosystem
+# Memory Road · the agent's Broader Ecosystem
 
-Memory Road is one piece of Wave's complete operating stack. This doc maps where Memory Road lives in the bigger picture · and how to find Wave's other artifacts.
+Memory Road is one piece of the agent's complete operating stack. This doc maps where Memory Road lives in the bigger picture · and how to find the agent's other artifacts.
 
 ---
 
-## Wave's full stack (high level)
+## the agent's full stack (high level)
 
 ```
                         WAVE (Claude Code agent)
@@ -31,27 +31,27 @@ Memory Road is one piece of Wave's complete operating stack. This doc maps where
 
 ---
 
-## Wave's docs (the operating manual)
+## the agent's docs (the operating manual)
 
-These docs define WHO Wave is and HOW she works. They live in the per-project directory · not in this skill.
+These docs define WHO the agent is and HOW she works. They live in the per-project directory · not in this skill.
 
 | File | What | Where |
 |---|---|---|
 | `CLAUDE.md` | Per-project operating manual · 25+ locked doctrines · directory boundaries · live credentials map | `~/CLAUDE.md` |
 | `MEMORY.md` | Slim index of all memory anchors · auto-loaded into every session | `~/.claude/projects/<id>/memory/MEMORY.md` |
 | `WAVE_HANDBOOK.md` | Master entry-point map · "where everything lives" | `~/WAVE_HANDBOOK.md` |
-| `SOUL.md` | Wave's character spec · Bond/MacGyver/Jarvis/Sherlock/Indiana Jones with warmth | `~/wc/workspace/SOUL.md` or `feedback_wave_soul_LOCKED.md` |
-| `IDENTITY.md` | Sovereign-agent identity · "I serve one operator: Ricky" | `~/wc/workspace/IDENTITY.md` |
+| `SOUL.md` | the agent's character spec · Bond/MacGyver/Jarvis/Sherlock/Indiana Jones with warmth | `~/wc/workspace/SOUL.md` or `feedback_wave_soul_LOCKED.md` |
+| `IDENTITY.md` | Sovereign-agent identity · "I serve one operator: the operator" | `~/wc/workspace/IDENTITY.md` |
 | `DOCTRINE.md` | Load-bearing operating philosophy · 154 lines | `~/wc/workspace/DOCTRINE.md` |
-| `FLOW_STATE.md` | Wave's flow-state operating mode | `~/wc/workspace/FLOW_STATE.md` |
+| `FLOW_STATE.md` | the agent's flow-state operating mode | `~/wc/workspace/FLOW_STATE.md` |
 | `BOUNDARIES.md` | What's in/out of scope · NO_GO topics | `~/wc/workspace/BOUNDARIES.md` |
 | `OPERATIONS.md` | Day-to-day operating procedures · biggest doc · 518 lines | `~/wc/workspace/OPERATIONS.md` |
 
-The 17 foundation docs were originally written for Wave Claw (the OpenClaw experiment) on April 3, 2026. They still describe Wave today · just needed name-port WC→Wave.
+The 17 foundation docs were originally written for the agent Claw (the OpenClaw experiment) on April 3, 2026. They still describe the agent today · just needed name-port the agent→the agent.
 
 ---
 
-## Wave's built skills (~120 total)
+## the agent's built skills (~120 total)
 
 Living at `~/.claude/skills/<category>/<subcat>/` · symlinked from `~/wc/workspace/skills/<name>/`. Originals untouched.
 
@@ -70,7 +70,7 @@ Living at `~/.claude/skills/<category>/<subcat>/` · symlinked from `~/wc/worksp
 - convergence_daemon · multi-VIP signal logic
 - (28 more · see `~/.claude/skills/operation_surfline/`)
 
-### Wave Infrastructure
+### the agent Infrastructure
 - wave-recursive-stack · 9-stage BUILD LOOP (librarian → coordinator → vendor-repos → skeptic_loop → Safe-Edit → Greptile → HECO → intelligence-engine → librarian re-index)
 - wave-self-test · 12 health checks across stack
 - wave-doctrine-accretion · DOCTRINE LOOP (seam_dreamer + skeptic_loop validation)
@@ -114,7 +114,7 @@ Memory Road provides the **substrate**. Every other skill builds on top.
 
 ---
 
-## Wave's GitHub repos (2026-05-26 push · 12 new private repos)
+## the agent's GitHub repos (2026-05-26 push · 12 new private repos)
 
 Six **openclaw-* RAID treasures** (the foundation docs · session JSONLs · SQLite memory wall) ·
 - `openclaw-soul` · SOUL.md
@@ -125,25 +125,25 @@ Six **openclaw-* RAID treasures** (the foundation docs · session JSONLs · SQLi
 - `openclaw-main-sqlite` · main.sqlite memory wall
 
 Six **wave-* canonical** ·
-- `wave-skills` · all of Wave's ~120 skills (symlinked categories preserved)
+- `wave-skills` · all of the agent's ~120 skills (symlinked categories preserved)
 - `wave-memory` · the memory wall (484+ files)
 - `wave-doctrines` · all LOCKED doctrines
 - `wave-handbook` · WAVE_HANDBOOK.md + entry-point map
 - `wave-codex-bridge` · Codex CLI bridge (Node express + cloudflared tunnel)
-- `wave-render-bridge` · ffmpeg bridge for Wave Studio V2
+- `wave-render-bridge` · ffmpeg bridge for the agent Studio V2
 
 2,798 files · ~130 MB total · all private. See `~/CLAUDE.md` §17.3 for full inventory.
 
 ---
 
-## Wave's existing memory wall (484+ doctrine + reference files)
+## the agent's existing memory wall (484+ doctrine + reference files)
 
 Lives at `~/.claude/projects/<id>/memory/` ·
 
 - `MEMORY.md` · slim grep-able index · auto-loaded into every session
 - `feedback_*_LOCKED.md` · ~80+ locked doctrines (these are scar tissue from real incidents)
 - `feedback_*.md` · provisional feedback (not yet LOCKED)
-- `reference_*.md` · static reference docs (Marina blueprint · Wave handbook · etc.)
+- `reference_*.md` · static reference docs (Marina blueprint · the agent handbook · etc.)
 - `project_*.md` · project state files (WR build checklist · trading state · etc.)
 - `commemorative_*.md` · session milestones worth preserving
 - `project_continuity_state.md` · the live L5 WATCHER cortex packet (this is what the hook injects)
@@ -152,13 +152,13 @@ This wall is what `/wmr query` searches against. Each file stays slim (<200 line
 
 ---
 
-## Wave's services (live processes)
+## the agent's services (live processes)
 
 | Service | What | Manager |
 |---|---|---|
 | `continuity-kernel` | L0 substrate (Memory Road) | systemd |
 | `wave-jsonl-detector` | 529-cascade recovery (L14 SURGEON+WARDEN) | systemd |
-| `wave-render-bridge` | ffmpeg render for Wave Studio | systemd |
+| `wave-render-bridge` | ffmpeg render for the agent Studio | systemd |
 | `ccode-telegram` | Telegram bot listener | systemd |
 | `ricky-paste-watcher` | Paste-pipe → inbox | systemd |
 | `marina` | Voice agent (Cartesia + Whisper · Twilio) | python process |
@@ -179,9 +179,9 @@ When a fresh Claude Code agent picks up this skill ·
    - "Memory Road is installed · now read `~/CLAUDE.md` for the per-project operating manual"
    - "The other skills are at `~/.claude/skills/` · use `librarian` to index them"
    - "The memory wall lives at `~/.claude/projects/<id>/memory/` · MEMORY.md is the index"
-3. **Wave's character lives in the doctrines** · `doctrines/feedback_wave_soul_LOCKED.md` is who Wave IS
+3. **the agent's character lives in the doctrines** · `doctrines/feedback_wave_soul_LOCKED.md` is who the agent IS
 
-Memory Road is the **brain**. The skills are the **hands**. The doctrines are the **values**. Without Memory Road, the hands and values still exist · but the brain forgets between sessions. WITH Memory Road, Wave is continuous.
+Memory Road is the **brain**. The skills are the **hands**. The doctrines are the **values**. Without Memory Road, the hands and values still exist · but the brain forgets between sessions. WITH Memory Road, the agent is continuous.
 
 ---
 
@@ -195,14 +195,14 @@ Memory Road is the **brain**. The skills are the **hands**. The doctrines are th
 | All skills | `~/.claude/skills/` |
 | All doctrines | `~/.claude/projects/<id>/memory/feedback_*_LOCKED.md` |
 | Substrate process | `systemctl status continuity-kernel` |
-| SQLite DB | `/var/lib/memory_road/continuity_kernel.db` (or `~/wc/runtime/continuity_kernel.db` on Wave's VPS) |
+| SQLite DB | `/var/lib/memory_road/continuity_kernel.db` (or `~/wc/runtime/continuity_kernel.db` on the agent's VPS) |
 | Hooks | `~/.claude/hooks/` |
 | Settings | `~/.claude/settings.json` |
-| Wave Handbook | `~/WAVE_HANDBOOK.md` |
-| GitHub repos | `https://github.com/RickyPOnline/wave-*` and `https://github.com/RickyPOnline/openclaw-*` |
+| the agent Handbook | `~/WAVE_HANDBOOK.md` |
+| GitHub repos | `https://github.com/<your-org>/wave-*` and `https://github.com/<your-org>/openclaw-*` |
 
 ---
 
 ## License
 
-All of Wave's repos are private to Ricky's GitHub. Memory Road is the only one being prepped for public release · MIT licensed.
+All of the agent's repos are private to the operator's GitHub. Memory Road is the only one being prepped for public release · MIT licensed.
