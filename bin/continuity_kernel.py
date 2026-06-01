@@ -2931,10 +2931,12 @@ def run():
 
     last_extract = 0
     last_shadow = 0
+    last_shadow_event_id = 0  # for skip-if-no-new-events guard · added 2026-06-01 per B fix
     last_episode = 0
     last_packet = 0
     last_ccode_extract = 0
     last_ccode_shadow = 0
+    last_ccode_shadow_event_id = 0  # skip-if-no-new-events guard · added 2026-06-01 per B fix
     last_ccode_episode = 0
     last_ccode_packet = 0
 
@@ -2959,16 +2961,18 @@ def run():
         except Exception as e:
             _log(f"AGENT RESULTS ERROR: {e}")
 
-        # ── WC L0 (every 5s) ──────────────────────
-        if now - last_extract >= EXTRACT_INTERVAL:
-            try:
-                update_L0()
-            except Exception as e:
-                _log(f"WC L0 ERROR: {e}")
-            last_extract = now
+        # ── WC L0 (DISABLED 2026-06-01 · was every 5s · now event-driven
+        #   via /root/.claude/hooks/snapshot_l0_now.sh wired to PreCompact +
+        #   SessionStart per /root/.claude/plans/foamy-toasting-cookie.md)
+        # if now - last_extract >= EXTRACT_INTERVAL:
+        #     try:
+        #         update_L0()
+        #     except Exception as e:
+        #         _log(f"WC L0 ERROR: {e}")
+        #     last_extract = now
 
-        # ── CCODE L0 (every 10s) ──────────────────
-        if now - last_ccode_extract >= 10:
+        # ── CCODE L0 (DISABLED 2026-06-01 · same as WC L0 above · sibling burner)
+        if False and now - last_ccode_extract >= 10:
             try:
                 update_ccode_L0()
             except Exception as e:
@@ -2991,18 +2995,44 @@ def run():
                 _log(f"CCODE EPISODE ERROR: {e}")
             last_ccode_episode = now
 
-        # ── WC SHADOW CORTEX (every 60s) ──────────
-        if now - last_shadow >= SHADOW_INTERVAL:
+        # ── WC SHADOW CORTEX (every 3h with skip-if-no-new-events guard)
+        #    PRE-2026-06-01 was every 60s = 1,440 Opus calls/day on Ricky's sub.
+        #    Now fires at most every 3h AND only if new events arrived AND fires
+        #    on-demand via /root/.claude/hooks/snapshot_l0_now.sh (wired to
+        #    PreCompact + SessionStart:startup). Per plan B in
+        #    /root/.claude/plans/foamy-toasting-cookie.md.
+        SHADOW_3H = 3 * 3600
+        if now - last_shadow >= SHADOW_3H:
             try:
-                run_shadow_cortex()
+                _scn = sqlite3.connect(str(KERNEL_DB), timeout=2)
+                _max_id = _scn.execute(
+                    "SELECT COALESCE(MAX(id),0) FROM events WHERE agent='WC'"
+                ).fetchone()[0]
+                _scn.close()
+                if _max_id > last_shadow_event_id:
+                    run_shadow_cortex()
+                    last_shadow_event_id = _max_id
+                    _log(f"WC SHADOW · 3h tick · fired · new events to id={_max_id}")
+                else:
+                    _log("WC SHADOW · 3h tick · skipped · no new events")
             except Exception as e:
                 _log(f"WC SHADOW ERROR: {e}")
             last_shadow = now
 
-        # ── CCODE SHADOW CORTEX (every 90s) ───────
-        if now - last_ccode_shadow >= 90:
+        # ── CCODE SHADOW CORTEX (every 3h with skip-if-no-new-events guard)
+        if now - last_ccode_shadow >= SHADOW_3H:
             try:
-                run_ccode_shadow()
+                _scn = sqlite3.connect(str(KERNEL_DB), timeout=2)
+                _max_id = _scn.execute(
+                    "SELECT COALESCE(MAX(id),0) FROM events WHERE agent='CCODE'"
+                ).fetchone()[0]
+                _scn.close()
+                if _max_id > last_ccode_shadow_event_id:
+                    run_ccode_shadow()
+                    last_ccode_shadow_event_id = _max_id
+                    _log(f"CCODE SHADOW · 3h tick · fired · new events to id={_max_id}")
+                else:
+                    _log("CCODE SHADOW · 3h tick · skipped · no new events")
             except Exception as e:
                 _log(f"CCODE SHADOW ERROR: {e}")
             last_ccode_shadow = now
