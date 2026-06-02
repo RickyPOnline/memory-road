@@ -1,8 +1,12 @@
 <div align="center">
 
-# 🧠 Memory Road
+# 🧠 Memory Road · Claude Code Memory
 
-**Persistent memory for Claude Code · drop-in install · the harness enforces memory.**
+**Claude Code memory that survives `/compact`, `/clear`, cold boots, and crashes.** Drop-in install. The harness enforces memory — not Claude's discipline.
+
+> _Searching for **Claude memory**, **Claude Code memory**, **persistent agent memory**, or **memory across sessions**?_ — you're in the right place. Memory Road is a layered architecture (Layers 0-12) that makes Claude Code remember things between sessions instead of starting cold every time. Scroll down to **The problem** to see the pain it fixes.
+
+> **First time here?** The simplest entry point to the broader pattern is the [PreCompact hook recipes repo](https://github.com/RickyPOnline/claude-code-precompact-recipes) — six tiny scripts that save state right before `/compact` summarizes it. PreCompact is one hook. Memory Road is what you build once you realize one hook isn't enough.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-orange.svg)](https://claude.com/claude-code)
